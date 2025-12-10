@@ -1,0 +1,6 @@
+authorized_medication.admin:
+  title: 'Médicaments autorisés'
+  description: 'Gérer les médicaments autorisés'
+  parent: system.admin_structure
+  route_name: authorized_medication.list
+  weight: 0

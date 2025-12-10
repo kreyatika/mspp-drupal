@@ -1,0 +1,6 @@
+etablissements_pharmaceutiques.admin:
+  title: 'Établissements pharmaceutiques'
+  description: 'Gérer les établissements pharmaceutiques'
+  parent: system.admin_structure
+  route_name: etablissements_pharmaceutiques.list
+  weight: 0

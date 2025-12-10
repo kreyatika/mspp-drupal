@@ -1,0 +1,16 @@
+{
+  "name": "mspp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "browser-sync start --proxy 'localhost/mspp_drupal' --files 'css/**/*.css' 'js/**/*.js' 'templates/**/*.twig' '../../../../../../modules/custom/**/*.twig'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "browser-sync": "^3.0.4"
+  }
+}

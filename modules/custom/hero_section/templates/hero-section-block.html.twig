@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Template for Hero Section block.
+ */
+#}
+<div class="hero-section" {% if image_url %}style="background-image: url('{{ image_url }}');"{% endif %}>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="hero-content text-white py-5">
+          {% if title %}
+            <h1 class="mb-3 fw-bold">{{ title }}</h1>
+          {% endif %}
+          {% if slogan %}
+            <p class="mb-4">{{ slogan }}</p>
+          {% endif %}
+          
+          {# Search form #}
+          <form class="hero-search mb-4" action="/recherche" method="get">
+            <div class="d-flex flex-column flex-md-row">
+              <input type="text" class="form-control w-100" name="q" placeholder="Rechercher un service ou une information...">
+              <button class="btn btn-primary flex-shrink-0" type="submit">
+                <i class="fa fa-search me-1"></i> Rechercher
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

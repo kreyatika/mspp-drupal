@@ -1,0 +1,4 @@
+services:
+  schools.api:
+    class: Drupal\schools\Service\SchoolsApiService
+    arguments: ['@http_client_factory']

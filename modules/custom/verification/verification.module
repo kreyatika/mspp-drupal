@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Verification module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function verification_theme() {
+  return [
+    'verification_permit' => [
+      'variables' => [
+        'permit_data' => NULL,
+        'error_message' => NULL,
+      ],
+    ],
+  ];
+}

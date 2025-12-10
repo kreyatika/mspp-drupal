@@ -1,0 +1,19 @@
+{
+  "name": "drupal/views_organization_chart",
+  "description": "Views Organization Chart",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/views_organization_chart",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/views_organization_chart",
+    "source": "https://git.drupalcode.org/project/views_organization_chart"
+  },
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "NGUYEN Bao",
+      "email": "n.bao@yahoo.com",
+      "homepage": "https://www.drupal.org/u/lazzyvn",
+      "role": "Maintainer"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * 
+ */
+/**
+ * Implements hook_theme().
+ */
+function hero_block_theme() {
+  return array(
+    'content_hero_block' => array(
+      'variables' => array('title' => NULL, 'sub_title' => NULL, 'img' => NULL),
+      'template' => 'block--content-hero-block',
+    ),
+  );
+}

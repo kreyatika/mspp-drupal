@@ -1,0 +1,5 @@
+name: MSPP Services
+type: module
+description: 'Provides static services page for MSPP'
+package: Custom
+core_version_requirement: ^9 || ^10

@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Hero Section module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function hero_section_theme($existing, $type, $theme, $path) {
+  return [
+    'hero_section_block' => [
+      'variables' => [
+        'title' => NULL,
+        'slogan' => NULL,
+        'image_url' => NULL,
+      ],
+      'template' => 'hero-section-block',
+    ],
+  ];
+}

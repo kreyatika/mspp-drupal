@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for views_organization_chart module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\image\Entity\ImageStyle;
+
+/**
+ * Implements hook_help().
+ */
+function views_organization_chart_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the views_organization_chart module.
+    case 'help.page.views_organization_chart':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('use highcharts Organization chart') . '</p>';
+      $output .= '<p>' . t('can use with user, taxonomy, content type') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Prepares variables views-style-views-organization-chart.html.twig template.
+ */
+function template_preprocess_views_style_views_organization_chart(&$variables) {
+  $variables['view']->element['#attached']['library'][] = 'views_organization_chart/views_organization_chart';
+  $view = $variables['view'];
+  $options = $view->style_plugin->options;
+  $storage = $view->storage;
+  $title = $view->getTitle();
+  $chartId = implode('-', [$view->id(), $view->current_display]);
+  $variables['chart_id'] = $chartId;
+  $variables['description'] = $storage->get('description');
+  $data = $levels = $nodes = [];
+  if (!empty($options["levels_color"])) {
+    foreach (explode(',', $options["levels_color"]) as $level => $color) {
+      $levels[] = (object) ['level' => $level, 'color' => $color];
+    }
+  }
+  $variables['default_row_class'] = $options['default_row_class'];
+  $style = ImageStyle::load('thumbnail');
+  $fileStorage = \Drupal::entityTypeManager()->getStorage('file');
+  foreach ($view->result as $id => $row) {
+    $parent = $view->field[$options["parent_field"]]->getValue($row) ?? 0;
+    if (is_array($parent)) {
+      $parent = current($parent);
+    }
+    $nodes[$id]['id'] = $row->_entity->id();
+    if ($parent != $row->_entity->id()) {
+      if ($parent) {
+        $data[] = [$parent, $row->_entity->id()];
+      }
+    }
+    if (!empty($options["image_field"])) {
+      $imageId = $view->field[$options["image_field"]]->getValue($row);
+      $photo_file = $fileStorage->load($imageId);
+      $nodes[$id]['image'] = $style->buildUrl($photo_file->uri->value);
+    }
+    if (!empty($options["name_field"])) {
+      $nodes[$id]['name'] = $view->field[$options["name_field"]]->advancedRender($row);
+    }
+    if (!empty($options["title_field"])) {
+      $nodes[$id]['title'] = $view->field[$options["title_field"]]->advancedRender($row);
+    }
+    if (empty($nodes[$id]['name'])) {
+      $nodes[$id]['name'] = $nodes[$id]['title'];
+      unset($nodes[$id]['title']);
+    }
+  }
+  $variables['view']->element['#attached']['drupalSettings'][$chartId] = [
+    'data' => $data,
+    'levels' => $levels,
+    'nodes' => array_values($nodes),
+    'title' => $title,
+  ];
+}

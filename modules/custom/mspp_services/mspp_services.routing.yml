@@ -1,0 +1,7 @@
+mspp_services.page:
+  path: '/service'
+  defaults:
+    _controller: '\Drupal\mspp_services\Controller\ServicesController::content'
+    _title: 'Services et outils'
+  requirements:
+    _access: 'TRUE'

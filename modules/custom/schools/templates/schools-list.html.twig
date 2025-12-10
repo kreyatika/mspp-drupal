@@ -1,0 +1,128 @@
+{#
+/**
+ * @file
+ * Template for the schools listing page.
+ */
+#}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card sticky-sidebar top-5 mb-4" style="background-color: #F6F6F6; top: 30px;">
+        <div class="card-body">
+          <h6 class="card-title fw-bold mb-3">{{ 'Rechercher'|t }}</h6>
+          <div class="input-group mb-4">
+            <input type="text" class="form-control" id="school-search" placeholder="{{ 'Rechercher une école...'|t }}">
+            <span class="input-group-text bg-primary text-white"><i class="fas fa-search"></i></span>
+          </div>
+
+          <h6 class="card-title fw-bold mb-3">{{ 'Département'|t }}</h6>
+          <select class="form-select mb-4" id="departement-filter">
+            <option value="">{{ 'Tous les départements'|t }}</option>
+            {% if departments is not empty %}
+              {% for department in departments %}
+                <option value="{{ department.name|lower }}">{{ department.name }}</option>
+              {% endfor %}
+            {% endif %}
+          </select>
+
+          <h6 class="card-title fw-bold mb-3">{{ 'Programmes Offerts'|t }}</h6>
+          {% if programs is not empty %}
+            {% for program in programs %}
+              {% set program_id = program.name|lower|replace({' ': '-'}) %}
+              {% set program_count = 0 %}
+              {% for school in schools %}
+                {% if school.programs is not empty %}
+                  {% for school_program in school.programs %}
+                    {% if school_program.id == program.id %}
+                      {% set program_count = program_count + 1 %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{ program_id }}" id="programmes-filter-{{ program_id }}">
+                <label class="form-check-label" for="programmes-filter-{{ program_id }}">
+                  {{ program.name }} ({{ program_count }})
+                </label>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      {% if schools is not empty %}
+        {% for school in schools %}
+          {% set department_name = '' %}
+          {% if school.department.name is defined %}
+            {% set department_name = school.department.name %}
+          {% elseif school.department_id is not empty %}
+            {% for department in departments %}
+              {% if department.id == school.department_id %}
+                {% set department_name = department.name %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          {% set program_ids = [] %}
+          {% if school.programs is not empty %}
+            {% for program in school.programs %}
+              {% set program_ids = program_ids|merge([program.name|lower|replace({' ': '-'})]) %}
+            {% endfor %}
+          {% endif %}
+
+          <div class="card mb-4 school-card" data-department="{{ department_name|lower }}" data-programs="{{ program_ids|join(' ') }}">
+            <div class="card-body p-4">
+              <h4 class="card-title border-bottom pb-3">{{ school.name }}</h4>
+              <div class="row mt-3">
+                <div class="col-md-7">
+                  {% if department_name %}
+                    <span class="badge badge-pill rounded-pill bg-primary text-white mb-2">{{ department_name }}</span>
+                  {% endif %}
+
+                  {% if school.address %}
+                    <div class="mb-2"><i class="fas text-secondary fa-map-marker-alt me-2 text-primary"></i> {{ school.address }}</div>
+                  {% endif %}
+
+                  {% if school.phone %}
+                    <div class="mb-2"><i class="fas text-secondary fa-phone me-2 text-primary"></i> {{ school.phone }}</div>
+                  {% endif %}
+
+                  {% if school.email %}
+                    <div class="mb-2"><i class="fas text-secondary fa-envelope me-2 text-primary"></i> {{ school.email }}</div>
+                  {% endif %}
+
+                  {% if school.website %}
+                    <div class="mb-2">
+                      <i class="fas text-secondary fa-globe me-2 text-primary"></i>
+                      <a href="{{ school.website }}" target="_blank">{{ school.website|replace({'http://': '', 'https://': ''}) }}</a>
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="col-md-5">
+                  <h6 class="fw-bold">{{ 'Programmes Offerts'|t }}</h6>
+                  <div class="row mt-3">
+                    <ul class="list-unstyled">
+                      {% if school.programs is not empty %}
+                        {% for program in school.programs %}
+                          <li><i class="fas fa-check-circle text-success me-2"></i> {{ program.name }}</li>
+                        {% endfor %}
+                      {% else %}
+                        <li>{{ 'Aucun programme disponible'|t }}</li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="alert alert-info">{{ 'Aucune école disponible pour le moment.'|t }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>

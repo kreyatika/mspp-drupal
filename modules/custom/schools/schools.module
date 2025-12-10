@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Schools module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function schools_theme() {
+  return [
+    'schools_list' => [
+      'template' => 'schools-list',
+      'variables' => [
+        'schools' => [],
+        'departments' => [],
+        'programs' => [],
+      ],
+    ],
+  ];
+}

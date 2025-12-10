@@ -1,0 +1,20 @@
+name: MSPP
+type: theme
+description: 'A simple custom theme for MSPP.'
+core_version_requirement: ^9 || ^10
+base theme: false
+package: Custom
+version: 1.0.0
+favicon: images/favicon.ico
+
+libraries:
+  - mspp/global-styling
+
+regions:
+  header: 'Header'
+  frontpage: 'Frontpage'
+  menu: 'Menu'
+  sidebarministry: 'Sidebar Ministry'
+  pagetitle: 'Page title'
+  content: 'Content'
+  footer: 'Footer'

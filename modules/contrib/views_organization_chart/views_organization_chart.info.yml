@@ -1,0 +1,10 @@
+name: Views organization chart
+type: module
+description: Diagram of organization and the relationships and relative hierarchy of its parts and locations
+package: Views
+core_version_requirement: ^9 || ^10 || ^11 || ^12
+
+# Information added by Drupal.org packaging script on 2024-11-30
+version: '1.0.5'
+project: 'views_organization_chart'
+datestamp: 1732930121

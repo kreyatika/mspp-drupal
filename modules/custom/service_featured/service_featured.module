@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Service Featured module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function service_featured_theme($existing, $type, $theme, $path) {
+  return [
+    'service_featured_block' => [
+      'variables' => [
+        'items' => [],
+      ],
+      'template' => 'service-featured-block',
+    ],
+  ];
+}

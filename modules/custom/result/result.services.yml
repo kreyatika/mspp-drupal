@@ -1,0 +1,4 @@
+services:
+  result.api_client:
+    class: Drupal\result\Service\ResultApiClient
+    arguments: ['@http_client']

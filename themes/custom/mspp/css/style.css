@@ -1,0 +1,145 @@
+/**
+ * @file
+ * Main stylesheet for MSPP website theme.
+ * Author: Kreyatika
+ */
+
+ /* Basic styling */
+body {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-primary);
+  font-weight: bold !important;
+  margin: 0 0 1rem 0 !important;
+  color: #000;
+}
+
+/* ul {
+  list-style: none;
+  margin:0px !important;
+  padding:0px !important;
+} */
+
+
+#toolbar-administration, #toolbar-administration-tray {
+  display: none !important;
+}
+
+/* Sidebar menu */
+.sidebar-left ul {
+       list-style: none;
+       padding: 0px;
+       margin: 0px;
+    }
+    .sidebar-left ul li {
+        margin-bottom: 20px;
+    }
+    .sidebar-left ul li a {
+        text-decoration: none;
+        color: #373A3C;
+        padding: 12px 16px;
+        font-weight:800;
+    }
+    .sidebar-left ul li a:hover {
+        background-color: var(--gray-color);
+        padding: 12px 16px;
+    }
+    .sidebar-left ul li a.is-active {
+        color: var(--primary-color);
+    }
+
+    .sidebar-left ul li a.is-active {
+        color: var(--primary-color);
+        position: relative;
+    }
+    .sidebar-left ul li a.is-active::before {
+        background-color: var(--primary-color);
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 3px;
+    }
+.border-right-column {
+  border-right: 1px solid #dee2e6;
+}
+
+/* .container {
+  max-width: 1180px !important;
+} */
+
+/* Search Form */
+.search-form .form-control {
+    border: none;
+    border-radius: 4px 0 0 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+}
+
+.search-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: none;
+}
+
+.search-form .btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0 4px 4px 0;
+    transition: all 0.3s ease;
+}
+
+.search-form .btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+/* Search Form */
+
+.page-title-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 1rem;
+}
+
+.page-title-wrapper h1 {
+  font-weight: bold;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+
+.sticky-sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+
+/* Site branding styling */
+.site-branding__logo img {
+    max-height: 200px;
+    width: auto;
+    padding-top: 5px;
+}
+
+.site-footer {
+  border-top: 1px solid #dee2e6;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+

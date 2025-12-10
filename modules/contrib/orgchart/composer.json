@@ -1,0 +1,13 @@
+{
+  "name": "drupal/orgchart",
+  "type": "drupal-module",
+  "description": "Organizational Charts",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/orgchart",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/orgchart",
+    "source": "http://cgit.drupalcode.org/orgchart"
+  }
+}

@@ -1,0 +1,9 @@
+access orgchart:
+  title: 'Access orgcharts pages'
+
+administer orgchart:
+  title: 'Administer orgcharts'
+
+administer orgchart yaml:
+  title: 'Administer orgcharts YAML code editor'
+  restrict access: true

@@ -1,0 +1,319 @@
+<?php
+
+/**
+ * @file
+ * Hooks and helper functions.
+ */
+
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_theme().
+ */
+function orgchart_theme() {
+  $info = [
+    'orgchart_codemirror' => [
+      'variables' => ['code' => NULL],
+    ],
+  ];
+
+  return $info;
+}
+
+/**
+ * Prepares variables for orgchart CodeMirror templates.
+ */
+function template_preprocess_orgchart_codemirror(array &$variables) {
+  if (is_string($variables['code'])) {
+    $variables['code'] = Markup::create(htmlentities($variables['code']));
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function orgchart_page_attachments_alter(array &$page) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name == 'orgchart.configuration.chart.build') {
+    $config = \Drupal::config('orgchart.charts.' . \Drupal::routeMatch()->getParameter('id'));
+  }
+  elseif (str_starts_with($route_name, 'orgchart.charts.')) {
+    $config = \Drupal::config($route_name);
+  }
+
+  if (!empty($config)) {
+    $css = _orgchart_build_css_vars($config);
+
+    $page['#attached']['html_head'][] = [
+      [
+        '#tag' => 'style',
+        '#value' => implode('', $css),
+      ],
+      'orgchart',
+    ];
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function orgchart_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+  if (str_starts_with($route_name, 'orgchart.configuration.chart.')) {
+    $route = 'orgchart.charts.' . \Drupal::routeMatch()->getParameter('id');
+    $data['tabs'][0][$route] = [
+      "#theme" => "menu_local_task",
+      "#link" => [
+        'title' => t('View'),
+        'url' => Url::fromRoute($route),
+      ],
+      "#active" => FALSE,
+      "#weight" => -99,
+      "#access" => TRUE,
+    ];
+  }
+  elseif (str_starts_with($route_name, 'orgchart.charts.')) {
+    $id = str_replace('orgchart.charts.', '', $route_name);
+    $data['tabs'][0][$route_name] = [
+      "#theme" => "menu_local_task",
+      "#link" => [
+        'title' => t('View'),
+        'url' => Url::fromRoute($route_name),
+      ],
+      "#active" => TRUE,
+      "#weight" => -99,
+      "#access" => (\Drupal::currentUser()->hasPermission('administer orgchart') || \Drupal::currentUser()->hasPermission('administer orgchart yaml')),
+    ];
+    $data['tabs'][0] = [
+      $route_name => [
+        "#theme" => "menu_local_task",
+        "#link" => [
+          'title' => t('View'),
+          'url' => Url::fromRoute($route_name),
+        ],
+        "#active" => TRUE,
+        "#weight" => -99,
+        "#access" => (\Drupal::currentUser()->hasPermission('administer orgchart') || \Drupal::currentUser()->hasPermission('administer orgchart yaml')),
+      ],
+      'orgchart.configuration.chart.edit' => [
+        "#theme" => "menu_local_task",
+        "#link" => [
+          'title' => t('Edit'),
+          'url' => Url::fromRoute('orgchart.configuration.chart.edit', ['id' => $id]),
+        ],
+        "#active" => TRUE,
+        "#weight" => 0,
+        "#access" => \Drupal::currentUser()->hasPermission('administer orgchart'),
+      ],
+      'orgchart.configuration.chart.build' => [
+        "#theme" => "menu_local_task",
+        "#link" => [
+          'title' => t('Build'),
+          'url' => Url::fromRoute('orgchart.configuration.chart.build', ['id' => $id]),
+        ],
+        "#active" => TRUE,
+        "#weight" => 1,
+        "#access" => \Drupal::currentUser()->hasPermission('administer orgchart'),
+      ],
+      'orgchart.configuration.chart.yaml' => [
+        "#theme" => "menu_local_task",
+        "#link" => [
+          'title' => t('Yaml'),
+          'url' => Url::fromRoute('orgchart.configuration.chart.yaml', ['id' => $id]),
+        ],
+        "#active" => TRUE,
+        "#weight" => 2,
+        "#access" => \Drupal::currentUser()->hasPermission('administer orgchart yaml'),
+      ],
+      'orgchart.configuration.chart.delete' => [
+        "#theme" => "menu_local_task",
+        "#link" => [
+          'title' => t('Delete'),
+          'url' => Url::fromRoute('orgchart.configuration.chart.delete', ['id' => $id]),
+        ],
+        "#active" => TRUE,
+        "#weight" => 3,
+        "#access" => \Drupal::currentUser()->hasPermission('administer orgchart'),
+      ],
+    ];
+  }
+
+  if ($route_name == 'orgchart.configuration.chart.build') {
+    $config = \Drupal::config('orgchart.charts.' . \Drupal::routeMatch()->getParameter('id'));
+    $data['tabs'][1] = [];
+    foreach ($config->get('config') as $key => $config) {
+      if (isset($config['active']) && $config['active'] == 1) {
+        $data['tabs'][1][$key] = [
+          "#theme" => "menu_local_task",
+          "#link" => [
+            'title' => ucfirst($key),
+            'url' => Url::fromRoute('orgchart.configuration.chart.build', [
+              'id' => \Drupal::routeMatch()->getParameter('id'),
+              'display' => $key,
+            ]),
+          ],
+          "#active" => (\Drupal::routeMatch()->getParameter('display') == $key) ? TRUE : FALSE,
+          "#weight" => 0,
+          "#access" => TRUE,
+        ];
+      }
+    }
+  }
+  elseif ($route_name == 'orgchart.configuration.chart.yaml') {
+    $config = \Drupal::config('orgchart.charts.' . \Drupal::routeMatch()->getParameter('id'));
+    $data['tabs'][1] = [];
+    foreach ($config->get('config') as $key => $config) {
+      if (isset($config['active']) && $config['active'] == 1) {
+        $data['tabs'][1][$key] = [
+          "#theme" => "menu_local_task",
+          "#link" => [
+            'title' => ucfirst($key),
+            'url' => Url::fromRoute('orgchart.configuration.chart.yaml', [
+              'id' => \Drupal::routeMatch()->getParameter('id'),
+              'display' => $key,
+            ]),
+          ],
+          "#active" => (\Drupal::routeMatch()->getParameter('display') == $key) ? TRUE : FALSE,
+          "#weight" => 0,
+          "#access" => TRUE,
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function orgchart_library_info_alter(&$libraries, $extension) {
+  if ($extension !== 'orgchart') {
+    return;
+  }
+
+  foreach ($libraries as $library_name => &$library) {
+    if (isset($library['module'])) {
+      continue;
+    }
+
+    if (isset($library['cdn']) && isset($library['directory']) && !_orgchart_library_exists($library['directory'])) {
+      _orgchart_library_info_alter_recursive($library, $library['cdn']);
+    }
+  }
+}
+
+/**
+ * {@inheritdoc}
+ */
+function _orgchart_library_info_alter_recursive(array &$library, array $cdn) {
+  foreach ($library as $key => &$value) {
+    if (!is_string($key) || !is_array($value)) {
+      continue;
+    }
+
+    if ($key === 'cdn') {
+      continue;
+    }
+
+    foreach ($cdn as $source => $destination) {
+      if (strpos($key, $source) === 0) {
+        $uri = str_replace($source, $destination, $key);
+        $library[$uri] = $value;
+        $library[$uri]['type'] = 'external';
+        unset($library[$key]);
+        break;
+      }
+    }
+
+    _orgchart_library_info_alter_recursive($value, $cdn);
+  }
+}
+
+/**
+ * {@inheritdoc}
+ */
+function _orgchart_library_exists($name) {
+  if (\Drupal::hasService('library.libraries_directory_file_finder')) {
+    return \Drupal::service('library.libraries_directory_file_finder')->find($name) ? TRUE : FALSE;
+  }
+  else {
+    return file_exists(DRUPAL_ROOT . '/libraries/' . $name);
+  }
+}
+
+/**
+ * Get orgcharts configs.
+ */
+function _orgchart_build_css_vars($config) {
+  $configuration = $config->get('config');
+
+  $css = [];
+  $css[] = '#render_orgchart .tablet,#render_orgchart .phone {display:none;}';
+  if ($configuration['tablet']['active'] == 1 && $configuration['phone']['active'] == 1) {
+    $css[] = '@media all and (max-width: ' . $configuration['desktop']['width'] . 'px) {#render_orgchart .desktop {display:none;}#render_orgchart .tablet {display:block;}}';
+    $css[] = '@media all and (max-width: ' . $configuration['tablet']['width'] . 'px) {#render_orgchart .tablet {display:none;}#render_orgchart .phone {display:block;}}';
+  }
+  elseif ($configuration['tablet']['active'] == 1 && $configuration['phone']['active'] == 0) {
+    $css[] = '@media all and (max-width: ' . $configuration['desktop']['width'] . 'px) {#render_orgchart .desktop {display:none;}#render_orgchart .tablet {display:block;}}';
+  }
+  elseif ($configuration['tablet']['active'] == 0 && $configuration['phone']['active'] == 1) {
+    $css[] = '@media all and (max-width: ' . $configuration['desktop']['width'] . 'px) {#render_orgchart .desktop {display:none;}#render_orgchart .phone {display:block;}}';
+  }
+  $css[] = ':root {
+    --ogBgColor: ' . $configuration['colors']['bgcolor'] . ';
+    --ogtextColor: ' . $configuration['colors']['textcolor'] . ';
+    --ogtextSize: ' . $configuration['colors']['textsize'] . 'px;
+    --ogDescBgColor: ' . $configuration['colors']['descbgcolor'] . ';
+    --ogDesctextColor: ' . $configuration['colors']['desctextcolor'] . ';
+    --oglineBgColor: ' . $configuration['colors']['linebgcolor'] . ';
+    --ogLvlOneBgColor: ' . $configuration['colors']['levels'][1]['bgcolor'] . ';
+    --ogLvlOneTextColor: ' . $configuration['colors']['levels'][1]['textcolor'] . ';
+    --ogLvlTwoBgColor: ' . $configuration['colors']['levels'][2]['bgcolor'] . ';
+    --ogLvlTwoTextColor: ' . $configuration['colors']['levels'][2]['textcolor'] . ';
+    --ogLvlThreeBgColor: ' . $configuration['colors']['levels'][3]['bgcolor'] . ';
+    --ogLvlThreeTextColor: ' . $configuration['colors']['levels'][3]['textcolor'] . ';
+    --ogLvlFourBgColor: ' . $configuration['colors']['levels'][4]['bgcolor'] . ';
+    --ogLvlFourTextColor: ' . $configuration['colors']['levels'][4]['textcolor'] . ';
+    --ogLvlFiveBgColor: ' . $configuration['colors']['levels'][5]['bgcolor'] . ';
+    --ogLvlFiveTextColor: ' . $configuration['colors']['levels'][5]['textcolor'] . ';
+  }';
+
+  return $css;
+}
+
+/**
+ * Get orgcharts configs.
+ */
+function _orgchart_get_all_configs() {
+  $query = \Drupal::database()->select('config', 'c')->fields('c', ['name'])->condition('c.name', 'orgchart.charts.%', 'LIKE');
+  $results = $query->execute()->fetchAll();
+
+  $configs = [];
+  if (!empty($results)) {
+    foreach ($results as $result) {
+      $configs[] = $result->name;
+    }
+  }
+
+  return $configs;
+}
+
+/**
+ * Gets all orgcharts.
+ */
+function _orgchart_get_all() {
+  $orgcharts = [];
+  $list = _orgchart_get_all_configs();
+  foreach ($list as $name) {
+    $orgchart = \Drupal::config($name);
+    $key = str_replace('orgchart.charts.', '', $name);
+    $orgcharts[$key] = [
+      'title' => $orgchart->get('title'),
+      'path' => $orgchart->get('path'),
+      'configs' => $orgchart->get('config'),
+      'build' => $orgchart->get('build'),
+    ];
+  }
+
+  return $orgcharts;
+}

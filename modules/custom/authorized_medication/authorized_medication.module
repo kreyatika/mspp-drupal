@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Authorized Medication module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function authorized_medication_theme() {
+  return [
+    'medications_public_list' => [
+      'variables' => [
+        'medications' => [],
+        'pager' => NULL,
+      ],
+      'template' => 'medications-public-list',
+    ],
+  ];
+}

@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Theme functions for the MSPP theme.
+ */
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function mspp_preprocess_page(array &$variables) {
+  // Get the current route match
+  $route_match = \Drupal::routeMatch();
+
+  // Try to get the title from the route
+  $route = $route_match->getRouteObject();
+  if ($route) {
+    $title = \Drupal::service('title_resolver')
+      ->getTitle(\Drupal::request(), $route);
+    
+    // Convert render arrays to strings
+    if (is_array($title)) {
+      $variables['title'] = \Drupal::service('renderer')->render($title);
+    }
+    // Convert markup objects to strings
+    elseif ($title instanceof \Drupal\Component\Render\MarkupInterface) {
+      $variables['title'] = $title->__toString();
+    }
+    else {
+      $variables['title'] = $title;
+    }
+  }
+
+  // Special handling for node pages
+  if ($node = $route_match->getParameter('node')) {
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      $variables['title'] = $node->getTitle();
+    }
+  }
+
+  // Special handling for taxonomy term pages
+  if ($term = $route_match->getParameter('taxonomy_term')) {
+    if ($term instanceof \Drupal\taxonomy\TermInterface) {
+      $variables['title'] = $term->getName();
+    }
+  }
+
+  // Fallback if no title is set
+  if (empty($variables['title'])) {
+    $variables['title'] = \Drupal::config('system.site')->get('name');
+  }
+}
+

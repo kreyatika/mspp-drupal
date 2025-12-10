@@ -1,0 +1,39 @@
+.publication-filters {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.publication-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.5rem;
+  height: 100%;
+}
+
+.publication-card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.download-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  gap: 0.5rem;
+}
+
+.download-link:hover {
+  color: #0d3640;
+}
+
+.pdf-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #dc3545;
+}

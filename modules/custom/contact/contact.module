@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Contact module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function contact_theme() {
+  return [
+    'contact_page' => [
+      'variables' => [],
+      'template' => 'contact-page',
+    ],
+  ];
+}

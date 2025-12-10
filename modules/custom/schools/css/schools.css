@@ -1,0 +1,16 @@
+.school-card {
+  border-bottom: 5px solid var(--primary-color) !important;
+}
+
+.school-card:hover {
+  background-color: #F6F6F6;
+}
+
+.school-card .card-title {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.school-card .card-text {
+  font-size: 0.9rem;
+}

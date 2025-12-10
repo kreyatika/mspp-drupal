@@ -1,0 +1,418 @@
+orgchart.settings:
+  type: config_object
+  label: 'Orgchart settings'
+  constraints:
+    FullyValidatable: ~
+  mapping:
+    defaults:
+      type: mapping
+      mapping:
+        colors:
+          type: mapping
+          mapping:
+            bgcolor:
+              type: string
+              label: 'Cell Background Color'
+            textcolor:
+              type: string
+              label: 'Cell Text Color'
+            textsize:
+              type: string
+              label: 'Cell Text Size'
+            descbgcolor:
+              type: string
+              label: 'Cell Description Background Color'
+            desctextcolor:
+              type: string
+              label: 'Cell Description Text Color'
+            linebgcolor:
+              type: string
+              label: 'Line Background Color'
+            levels:
+              type: sequence
+              label: 'Levels'
+              sequence:
+                type: mapping
+                mapping:
+                  bgcolor:
+                    type: string
+                    label: 'Cell Background Color'
+                  textcolor:
+                    type: string
+                    label: 'Cell Text Color'
+        desktop:
+          type: mapping
+          mapping:
+            active:
+              type: integer
+              label: 'Active'
+            width:
+              type: string
+              label: 'width'
+        tablet:
+          type: mapping
+          mapping:
+            active:
+              type: integer
+              label: 'Active'
+            width:
+              type: string
+              label: 'width'
+        phone:
+          type: mapping
+          mapping:
+            active:
+              type: integer
+              label: 'Active'
+            width:
+              type: string
+              label: 'width'
+
+orgchart.charts.*:
+  type: config_object
+  label: 'Orgchart'
+  constraints:
+    FullyValidatable: ~
+  mapping:
+    title:
+      type: string
+      label: 'Title'
+    path:
+      type: string
+      label: 'Path'
+    config:
+      type: mapping
+      mapping:
+        colors:
+          type: mapping
+          mapping:
+            bgcolor:
+              type: string
+              label: 'Cell Background Color'
+            textcolor:
+              type: string
+              label: 'Cell Text Color'
+            textsize:
+              type: string
+              label: 'Cell Text Size'
+            descbgcolor:
+              type: string
+              label: 'Cell Description Background Color'
+            desctextcolor:
+              type: string
+              label: 'Cell Description Text Color'
+            linebgcolor:
+              type: string
+              label: 'Line Background Color'
+            levels:
+              type: sequence
+              label: 'Levels'
+              sequence:
+                type: mapping
+                mapping:
+                  bgcolor:
+                    type: string
+                    label: 'Cell Background Color'
+                  textcolor:
+                    type: string
+                    label: 'Cell Text Color'
+        desktop:
+          type: mapping
+          mapping:
+            active:
+              type: integer
+              label: 'Active'
+            width:
+              type: string
+              label: 'Width'
+        tablet:
+          type: mapping
+          mapping:
+            active:
+              type: integer
+              label: 'Active'
+            width:
+              type: string
+              label: 'Width'
+        phone:
+          type: mapping
+          mapping:
+            active:
+              type: integer
+              label: 'Active'
+            width:
+              type: string
+              label: 'Width'
+    build:
+      type: mapping
+      mapping:
+        desktop:
+          type: mapping
+          mapping: 
+            height:
+              type: string
+              label: 'Height'
+            values:
+              type: mapping
+              mapping: 
+                cells:
+                  type: sequence
+                  label: 'Cells'
+                  sequence:
+                    type: mapping
+                    mapping: 
+                      id:
+                        type: integer
+                        label: 'ID'
+                      title:
+                        type: string
+                        label: 'Title'
+                      link:
+                        type: string
+                        label: 'Link'
+                      left:
+                        type: string
+                        label: 'Left'
+                      top:
+                        type: string
+                        label: 'Top'
+                      width:
+                        type: string
+                        label: 'Width'
+                      height:
+                        type: string
+                        label: 'Height'
+                      size:
+                        type: string
+                        label: 'Size'
+                      color:
+                        type: string
+                        label: 'Color'
+                      bgcolor:
+                        type: string
+                        label: 'Background Color'
+                      fontweight:
+                        type: string
+                        label: 'Font Weight'
+                      level:
+                        type: string
+                        label: 'Level'
+                      subtitle:
+                        type: string
+                        label: 'Subtitle'
+                lines:
+                  type: sequence
+                  label: 'Lines'
+                  sequence:
+                    type: mapping
+                    mapping: 
+                      id:
+                        type: integer
+                        label: 'ID'
+                      orientation:
+                        type: string
+                        label: 'Orientation'
+                      left:
+                        type: string
+                        label: 'Left'
+                      top:
+                        type: string
+                        label: 'Top'
+                      width:
+                        type: string
+                        label: 'Width'
+                      height:
+                        type: string
+                        label: 'Height'
+                      linecolor:
+                        type: string
+                        label: 'Line Color'
+                      linetype:
+                        type: string
+                        label: 'Line Type'
+                      left_top_arrow:
+                        type: string
+                        label: 'Left/Top Arrow'
+                      right_bottom_arrow:
+                        type: string
+                        label: 'Right/Bottom Arrow'
+        tablet:
+          type: mapping
+          mapping: 
+            height:
+              type: string
+              label: 'Height'
+            values:
+              type: mapping
+              mapping: 
+                cells:
+                  type: sequence
+                  label: 'Cells'
+                  sequence:
+                    type: mapping
+                    mapping: 
+                      id:
+                        type: integer
+                        label: 'ID'
+                      title:
+                        type: string
+                        label: 'Title'
+                      link:
+                        type: string
+                        label: 'Link'
+                      left:
+                        type: string
+                        label: 'Left'
+                      top:
+                        type: string
+                        label: 'Top'
+                      width:
+                        type: string
+                        label: 'Width'
+                      height:
+                        type: string
+                        label: 'Height'
+                      size:
+                        type: string
+                        label: 'Size'
+                      color:
+                        type: string
+                        label: 'Color'
+                      bgcolor:
+                        type: string
+                        label: 'Background Color'
+                      fontweight:
+                        type: string
+                        label: 'Font Weight'
+                      level:
+                        type: string
+                        label: 'Level'
+                      subtitle:
+                        type: string
+                        label: 'Subtitle'
+                lines:
+                  type: sequence
+                  label: 'Lines'
+                  sequence:
+                    type: mapping
+                    mapping: 
+                      id:
+                        type: integer
+                        label: 'ID'
+                      orientation:
+                        type: string
+                        label: 'Orientation'
+                      left:
+                        type: string
+                        label: 'Left'
+                      top:
+                        type: string
+                        label: 'Top'
+                      width:
+                        type: string
+                        label: 'Width'
+                      height:
+                        type: string
+                        label: 'Height'
+                      linecolor:
+                        type: string
+                        label: 'Line Color'
+                      linetype:
+                        type: string
+                        label: 'Line Type'
+                      left_top_arrow:
+                        type: string
+                        label: 'Left/Top Arrow'
+                      right_bottom_arrow:
+                        type: string
+                        label: 'Right/Bottom Arrow'
+        phone:
+          type: mapping
+          mapping: 
+            height:
+              type: string
+              label: 'Height'
+            values:
+              type: mapping
+              mapping: 
+                cells:
+                  type: sequence
+                  label: 'Cells'
+                  sequence:
+                    type: mapping
+                    mapping: 
+                      id:
+                        type: integer
+                        label: 'ID'
+                      title:
+                        type: string
+                        label: 'Title'
+                      link:
+                        type: string
+                        label: 'Link'
+                      left:
+                        type: string
+                        label: 'Left'
+                      top:
+                        type: string
+                        label: 'Top'
+                      width:
+                        type: string
+                        label: 'Width'
+                      height:
+                        type: string
+                        label: 'Height'
+                      size:
+                        type: string
+                        label: 'Size'
+                      color:
+                        type: string
+                        label: 'Color'
+                      bgcolor:
+                        type: string
+                        label: 'Background Color'
+                      fontweight:
+                        type: string
+                        label: 'Font Weight'
+                      level:
+                        type: string
+                        label: 'Level'
+                      subtitle:
+                        type: string
+                        label: 'Subtitle'
+                lines:
+                  type: sequence
+                  label: 'Lines'
+                  sequence:
+                    type: mapping
+                    mapping: 
+                      id:
+                        type: integer
+                        label: 'ID'
+                      orientation:
+                        type: string
+                        label: 'Orientation'
+                      left:
+                        type: string
+                        label: 'Left'
+                      top:
+                        type: string
+                        label: 'Top'
+                      width:
+                        type: string
+                        label: 'Width'
+                      height:
+                        type: string
+                        label: 'Height'
+                      linecolor:
+                        type: string
+                        label: 'Line Color'
+                      linetype:
+                        type: string
+                        label: 'Line Type'
+                      left_top_arrow:
+                        type: string
+                        label: 'Left/Top Arrow'
+                      right_bottom_arrow:
+                        type: string
+                        label: 'Right/Bottom Arrow'

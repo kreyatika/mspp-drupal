@@ -1,0 +1,21 @@
+{# empty Twig template #}
+<div class="heroblock banner">
+    <div class="image">
+        {%if(img)%}
+            <img class="d-lg-none mobile-image" src="{{img}}" {%if(title)%} alt="{{title}}" {%endif%}> <!-- OPTION: Background-image -->
+        {%endif%}
+        <div class="caption">
+            <div class="caption-cont">
+                {%if(title)%}
+                    <h1 class="title">{{title}}</h1> <!-- OPTION: Caption title -->
+                {%endif%}
+                <!-- CONDITIONAL: If Caption subtitle != null -->
+                {%if(sub_title)%}
+                    <h2 class="subtitle">{{sub_title}}</h2> <!-- OPTION: Caption subtitle -->
+                {%endif%}
+                <!-- CONDITIONAL: If Caption subtitle != null -->
+            </div>
+        </div>
+
+    </div>
+</div>

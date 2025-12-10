@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for page title block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ * - content: The content of this block.
+ * - attributes: HTML attributes for the containing element.
+ */
+#}
+<div{{ attributes.addClass('page-title-wrapper') }}>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-content py-3">
+          {% if label %}
+            <h1{{ title_attributes.addClass('page-title') }}>{{ label }}</h1>
+          {% endif %}
+          {% block content %}
+            {{ content }}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

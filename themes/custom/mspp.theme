@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Theme functions for the MSPP theme.
+ */
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function mspp_preprocess_page(array &$variables) {
+
+  // If already defined, keep it.
+  $title = NULL;
+
+  // Case 1: It's a node page.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node && $node instanceof \Drupal\node\NodeInterface) {
+    $title = $node->label();
+  }
+
+  // Case 2: For non-node pages (views pages, taxonomy, system pages)
+  if (!$title) {
+    $route = \Drupal::routeMatch()->getRouteObject();
+    if ($route) {
+      $request = \Drupal::request();
+      $titleResolver = \Drupal::service('title_resolver');
+      $resolved_title = $titleResolver->getTitle($request, $route);
+      if ($resolved_title) {
+        // Title resolver may return MarkupInterface or string.
+        $title = is_string($resolved_title) ? $resolved_title : $resolved_title->render();
+      }
+    }
+  }
+
+  // Expose the title to Twig.
+  if ($title) {
+    $variables['title'] = $title;
+  }
+  else {
+    // Fallback — ensures `title` is always defined.
+    $variables['title'] = NULL;
+  }
+}

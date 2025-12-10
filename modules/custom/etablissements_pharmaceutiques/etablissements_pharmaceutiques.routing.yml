@@ -1,0 +1,15 @@
+etablissements_pharmaceutiques.list:
+  path: '/admin/pharmacies'
+  defaults:
+    _controller: '\Drupal\etablissements_pharmaceutiques\Controller\PharmacieController::listPharmacies'
+    _title: 'Liste des pharmacies'
+  requirements:
+    _permission: 'access content'
+
+etablissements_pharmaceutiques.add:
+  path: '/admin/pharmacies/add'
+  defaults:
+    _form: '\Drupal\etablissements_pharmaceutiques\Form\AddPharmacieForm'
+    _title: 'Ajouter une pharmacie'
+  requirements:
+    _permission: 'access content'

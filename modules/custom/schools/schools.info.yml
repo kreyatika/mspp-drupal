@@ -1,0 +1,8 @@
+name: Schools
+type: module
+description: 'Manages schools and educational institutions functionality.'
+package: MSPP
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:node
+  - drupal:path

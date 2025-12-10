@@ -1,0 +1,7 @@
+schools.list:
+  path: '/universites-ecoles-reconnues'
+  defaults:
+    _controller: '\Drupal\schools\Controller\SchoolsController::content'
+    _title: 'Universités et écoles reconnues'
+  requirements:
+    _permission: 'access content'

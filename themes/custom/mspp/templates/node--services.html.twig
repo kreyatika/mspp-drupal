@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Template for displaying a Service node.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+  ]
+%}
+        
+        {% if content.field_image %}
+          <div class="service-image mb-4">
+            {{ content.field_image }}
+          </div>
+        {% endif %}
+
+        {% if content.field_service_category %}
+          <div class="service-categories mb-4">
+            {{ content.field_service_category }}
+          </div>
+        {% endif %}
+
+        {% if content.body %}
+            {{ content.body }}
+        {% endif %}
+
+        {% if content.field_lien %}
+          <div class="service-link mt-4">
+            <a href="{{ content.field_lien[0]['#url'] }}" class="btn btn-primary">
+              {{ content.field_lien[0]['#title'] }}
+              <i class="fa-solid fa-up-right-from-square ms-2"></i>
+            </a>
+          </div>
+        {% endif %}
+</article>

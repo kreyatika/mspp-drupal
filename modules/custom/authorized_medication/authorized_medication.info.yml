@@ -1,0 +1,6 @@
+name: Authorized Medication
+description: Module for managing authorized medications
+type: module
+core_version_requirement: ^9 || ^10
+version: 1.0.0
+package: Custom

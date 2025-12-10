@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for the site branding block.
+ */
+#}
+<div{{ attributes.addClass('site-branding') }}>
+  {% if site_logo %}
+    <a href="{{ path('<front>') }}" class="header-logo" rel="home">
+      <img src="{{ site_logo }}" alt="{{ site_name }}" height="70">
+    </a>
+  {% endif %}
+</div>

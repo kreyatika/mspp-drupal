@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * The Minister module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function the_minister_theme($existing, $type, $theme, $path) {
+  return [
+    'the_minister_block' => [
+      'variables' => [
+        'name' => NULL,
+        'photo_url' => NULL,
+      ],
+      'template' => 'the-minister-block',
+    ],
+  ];
+}

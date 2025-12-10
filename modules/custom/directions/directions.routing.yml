@@ -1,0 +1,7 @@
+directions.list:
+  path: '/directions'
+  defaults:
+    _controller: '\Drupal\directions\Controller\DirectionsController::content'
+    _title: 'Directions'
+  requirements:
+    _permission: 'access content'

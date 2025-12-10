@@ -1,0 +1,54 @@
+orgchart:
+  version: VERSION
+  css:
+    theme:
+      css/orgchart.css: {}
+  js:
+    js/orgchart.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+
+orgchart.admin:
+  version: VERSION
+  css:
+    theme:
+      css/orgchart_admin.css: {}
+  js:
+    js/orgchart_admin.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - jquery_ui_draggable/draggable
+    - jquery_ui_resizable/resizable
+    - core/drupal.dialog.ajax
+
+orgchart.colors:
+  version: VERSION
+  css:
+    theme:
+      css/orgchart_colors.css: {}
+
+orgchart.codemirror:
+  remote: https://github.com/codemirror/codemirror
+  download: https://github.com/components/codemirror
+  version: '5.65.12'
+  license:
+    name: MIT
+    url: http://codemirror.net/LICENSE
+    gpl-compatible: true
+  directory: codemirror
+  cdn:
+    /libraries/codemirror/lib/: https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/
+    /libraries/codemirror/: https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/
+  css:
+    component:
+      /libraries/codemirror/lib/codemirror.css: {}
+  js:
+    /libraries/codemirror/lib/codemirror.js: { weight: -1 }
+    /libraries/codemirror/addon/runmode/runmode.js: {}
+    /libraries/codemirror/addon/display/placeholder.js: {}
+    /libraries/codemirror/mode/yaml/yaml.js: {}
+    js/orgchart_yaml.js: {}

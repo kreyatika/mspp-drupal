@@ -1,0 +1,13 @@
+name: orgchart
+type: module
+description: Organizational Charts
+core_version_requirement: ^8 || ^9 || ^10
+configure: orgchart.configuration
+dependencies:
+  - jquery_ui_draggable
+  - jquery_ui_resizable
+
+# Information added by Drupal.org packaging script on 2024-12-11
+version: '1.0.0'
+project: 'orgchart'
+datestamp: 1733916072

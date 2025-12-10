@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Template for the public medications list.
+ *
+ * Available variables:
+ * - medications: Array of medication objects.
+ */
+#}
+
+<div class="row">
+    <div class="col-md-9">
+
+      <div class="search-container">
+            <input type="text" id="medicationSearch" class="form-control" placeholder="{{ 'Rechercher un médicament...'|t }}"/>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{{ 'Nom'|t }}</th>
+                        <th>{{ 'Forme'|t }}</th>
+                        <th>{{ 'Type'|t }}</th>
+                        <th>{{ 'Dosage'|t }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for medication in medications %}
+                        <tr class="medication-item">
+                            <td>{{ medication.name }}</td>
+                            <td>{{ medication.shape }}</td>
+                            <td>{{ medication.form }}</td>
+                            <td>{{ medication.dosage }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center">{{ 'Aucun médicament trouvé.'|t }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {{ pager }}
+        </div>
+    </div>
+
+    <div class="col-md-3">
+       sidebar
+    </div>
+</div>
+
+<script>
+    (function ($, Drupal) {
+        'use strict';
+        
+        Drupal.behaviors.medicationSearch = {
+            attach: function (context, settings) {
+                $('#medicationSearch', context).once('medication-search').on('keyup', function () {
+                    var searchText = $(this).val().toLowerCase();
+                    $('.medication-item').each(function () {
+                        var text = $(this).text().toLowerCase();
+                        $(this).toggle(text.includes(searchText));
+                    });
+                });
+            }
+        };
+    })(jQuery, Drupal);
+</script>

@@ -1,0 +1,15 @@
+result.exam_result:
+  path: '/resultats-examen'
+  defaults:
+    _controller: '\Drupal\result\Controller\ResultController::content'
+    _title: 'Résultats officiels'
+  requirements:
+    _permission: 'access content'
+
+result.exam_result_direct:
+  path: '/resultats-examen/{order_number}'
+  defaults:
+    _controller: '\Drupal\result\Controller\ResultController::content'
+    _title: 'Résultats officiels'
+  requirements:
+    _permission: 'access content'

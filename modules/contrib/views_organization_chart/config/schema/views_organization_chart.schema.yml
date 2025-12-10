@@ -1,0 +1,7 @@
+views.style.views_organization_chart:
+  type: views_style
+  label: 'organization chart'
+  mapping:
+    wrapper_class:
+      type: string
+      label: Wrapper class

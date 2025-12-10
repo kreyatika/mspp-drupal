@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Publication module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function publication_theme() {
+  return [
+    'publication_list' => [
+      'variables' => [
+        'publications' => [],
+      ],
+      'template' => 'publication-list',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function publication_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'publication/publication';
+}

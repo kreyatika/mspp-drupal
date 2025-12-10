@@ -1,0 +1,6 @@
+name: Établissements pharmaceutiques
+description: Module for managing pharmaceutical establishments
+type: module
+core_version_requirement: ^9 || ^10
+version: 1.0.0
+package: Custom

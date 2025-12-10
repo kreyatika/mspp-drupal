@@ -1,0 +1,24 @@
+.service-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+
+.node--type-services .service-categories {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.node--type-services .service-categories .field__item {
+  background-color: var(--bs-primary-bg-subtle);
+  color: var(--bs-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+}
+
+.node--type-services .service-body {
+  line-height: 1.6;
+}

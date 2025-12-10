@@ -1,0 +1,16 @@
+# Custom module library for general purposes.
+views_organization_chart:
+  js:
+    //code.highcharts.com/highcharts.js: {type: external, minified: true, crossorigin: anonymous}
+    //code.highcharts.com/modules/sankey.js: {type: external, minified: true, crossorigin: anonymous}
+    //code.highcharts.com/modules/organization.js: {type: external, minified: true, crossorigin: anonymous}
+    //code.highcharts.com/modules/exporting.js: {type: external, minified: true, crossorigin: anonymous}
+    //code.highcharts.com/modules/accessibility.js: {type: external, minified: true, crossorigin: anonymous}
+    js/views-organization-chart.js: {}
+  css:
+    component:
+      css/views-organization-chart.css: {}
+  dependencies:
+    - core/drupalSettings
+    - core/jquery
+    - core/once

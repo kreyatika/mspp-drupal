@@ -1,0 +1,4 @@
+the_minister:
+  css:
+    theme:
+      css/the-minister.css: {}

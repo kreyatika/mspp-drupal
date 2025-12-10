@@ -1,0 +1,5 @@
+orgchart.configuration:
+  title: 'Orgcharts'
+  parent: system.admin_config
+  description: 'Orgchart Configuration.'
+  route_name: orgchart.configuration

@@ -1,0 +1,5 @@
+name: The Minister
+type: module
+description: 'Provides The Minister block for the homepage'
+package: Custom
+core_version_requirement: ^9 || ^10

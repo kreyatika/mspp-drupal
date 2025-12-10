@@ -1,0 +1,115 @@
+#draggable div.cell,
+#render_orgchart div.cell,
+#render_orgchart div.cell span.title {
+  background-color: var(--ogBgColor);
+  font-weight: normal;
+}
+
+#draggable div.cell,
+#render_orgchart div.cell,
+#render_orgchart div.cell span.title {
+  color: var(--ogtextColor);
+}
+#draggable div.cell span.title a,
+#render_orgchart div.cell span.title a {
+  color: inherit;
+}
+#draggable div.cell .subtitle,
+#render_orgchart .cell .subtitle {
+  background-color: var(--ogDescBgColor);
+  color: var(--ogDesctextColor);
+}
+
+#draggable div.cell,
+#render_orgchart div.cell {
+  border-color: var(--ogBgColor);
+}
+#draggable .line,
+#render_orgchart .line {
+  background: var(--oglineBgColor);
+  border-color: var(--oglineBgColor);
+}
+
+#render_orgchart .line.line-vertical,
+#render_orgchart .line.line.line-horizontal {
+  border-color: var(--oglineBgColor);
+}
+#render_orgchart .line.line-vertical.line-dashed {
+  border-color: var(--oglineBgColor);
+}
+#render_orgchart .line.line-horizontal.line-dashed {
+  border-color: var(--oglineBgColor);
+}
+#draggable .line.line-vertical.line-dashed {
+  background: repeating-linear-gradient( to bottom, var(--oglineBgColor), var(--oglineBgColor) 6px, #fff 6px, #fff 12px );
+}
+#draggable .line.line-horizontal.line-dashed {
+  background: repeating-linear-gradient( to right, var(--oglineBgColor), var(--oglineBgColor) 6px, #fff 6px, #fff 12px );
+}
+#draggable .line.line-horizontal.left_top_arrow::before,
+#render_orgchart .line.line-horizontal.left_top_arrow::before {
+  border-right-color: inherit;
+}
+#draggable .line.line-horizontal.right_bottom_arrow::after,
+#render_orgchart .line.line-horizontal.right_bottom_arrow::after {
+  border-left-color: inherit;
+}
+#draggable .line.line-vertical.right_bottom_arrow::before,
+#render_orgchart .line.line-vertical.right_bottom_arrow::before {
+  border-top-color: inherit;
+}
+#draggable .line.line-vertical.left_top_arrow::after,
+#render_orgchart .line.line-vertical.left_top_arrow::after {
+  border-bottom-color: inherit;
+}
+#draggable div.cell.cell.cell-level-1,
+#render_orgchart div.cell.cell-level-1,
+#render_orgchart div.cell.cell-level-1 span.title {
+  background-color: var(--ogLvlOneBgColor);
+  border-color: var(--ogLvlOneBgColor);
+  color: var(--ogLvlOneTextColor);
+}
+#draggable div.cell.cell.cell-level-2,
+#render_orgchart div.cell.cell-level-2,
+#render_orgchart div.cell.cell-level-2 span.title  {
+  background-color: var(--ogLvlTwoBgColor);
+  border-color: var(--ogLvlTwoBgColor);
+  color: var(--ogLvlTwoTextColor);
+}
+#draggable div.cell.cell.cell-level-3,
+#render_orgchart div.cell.cell-level-3,
+#render_orgchart div.cell.cell-level-3 span.title  {
+  background-color: var(--ogLvlThreeBgColor);
+  border-color: var(--ogLvlThreeBgColor);
+  color: var(--ogLvlThreeTextColor);
+}
+#draggable div.cell.cell.cell-level-4,
+#render_orgchart div.cell.cell-level-4,
+#render_orgchart div.cell.cell-level-4 span.title  {
+  background-color: var(--ogLvlFourBgColor);
+  border-color: var(--ogLvlFourBgColor);
+  color: var(--ogLvlFourTextColor);
+}
+#draggable div.cell.cell.cell-level-5,
+#render_orgchart div.cell.cell-level-5,
+#render_orgchart div.cell.cell-level-5 span.title  {
+  background-color: var(--ogLvlFiveBgColor);
+  border-color: var(--ogLvlFiveBgColor);
+  color: var(--ogLvlFiveTextColor);
+}
+#draggable div.cell,
+#render_orgchart div.cell,
+#render_orgchart div.cell span.title {
+  font-size: var(--ogtextSize);
+  line-height: 1.2;
+}
+#draggable div.cell.cell-grande,
+#render_orgchart div.cell.cell-grande,
+#render_orgchart div.cell.cell-grande span.title {
+  font-size: calc(var(--ogtextSize) * 1.2);
+}
+#draggable div.cell.cell-pequena,
+#render_orgchart div.cell.cell-pequena,
+#render_orgchart div.cell.cell-pequena span.title {
+  font-size: calc(var(--ogtextSize) * 0.8);
+}

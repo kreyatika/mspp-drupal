@@ -1,0 +1,7 @@
+verification.permit:
+  path: '/verification-permis'
+  defaults:
+    _controller: '\Drupal\verification\Controller\VerificationController::content'
+    _title: 'Vérification de permis'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,22 @@
+.home-number-section {
+    background-color: var(--bs-health);
+    padding:3rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.home-number-section h3 {
+    text-align: center;
+    margin-bottom: 50px !important;
+}
+
+.home-number-section .card {
+    text-align: center;
+    border: 0px;
+}
+
+.home-number-section .card .numbers {
+    font-size:69px;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+}

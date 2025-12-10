@@ -1,0 +1,4 @@
+services:
+  verification.api_client:
+    class: Drupal\verification\Service\VerificationApiClient
+    arguments: ['@http_client']

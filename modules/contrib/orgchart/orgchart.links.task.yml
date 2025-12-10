@@ -1,0 +1,19 @@
+orgchart.configuration.chart.edit:
+  title: Edit
+  route_name: orgchart.configuration.chart.edit
+  base_route: orgchart.configuration.chart.edit
+
+orgchart.configuration.chart.build:
+  title: Build
+  route_name: orgchart.configuration.chart.build
+  base_route: orgchart.configuration.chart.edit
+
+orgchart.configuration.chart.yaml:
+  title: Yaml
+  route_name: orgchart.configuration.chart.yaml
+  base_route: orgchart.configuration.chart.edit
+
+orgchart.configuration.chart.delete:
+  title: Delete
+  route_name: orgchart.configuration.chart.delete
+  base_route: orgchart.configuration.chart.edit

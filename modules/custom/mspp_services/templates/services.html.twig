@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * Template for the Services page.
+ */
+#}
+<div class="container">
+  <div class="row g-5">
+
+    <div class="col-sm-3 border-right-column">
+      {{ form }}
+    </div>
+
+    <div class="col-sm-9">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        {% if services is empty %}
+          <div class="col-12">
+            <div class="alert alert-info">
+              {{ 'Aucun service disponible pour le moment.'|t }}
+            </div>
+          </div>
+        {% else %}
+          {% for service in services %}
+            <div class="col">
+              {% if service.field_lien %}
+                {% set url = service.field_lien %}
+              {% else %}
+                {% set url = path('entity.node.canonical', {'node': service.nid}) %}
+              {% endif %}
+
+              <a href="{{ url }}" class="text-decoration-none">
+
+                <div class="card service-card"
+                  data-categories="{% for cat in service.categories %}{{ cat.tid }}{% if not loop.last %},{% endif %}{% endfor %}">
+
+                  <div class="card-body">
+
+                  <div class="d-flex justify-content-start gap-3 align-items-center">
+                    {% if service.field_icon %}
+                      <div class="text-primary mb-3 service-icon">
+                        {{ service.field_icon.svg|raw }}
+                      </div>
+                    {% endif %}
+
+                    <h6 class="card-title">{{ service.title }}</h6>
+
+                    </div>
+
+                    {% if service.field_description_courte %}
+                      <p class="card-text">{{ service.field_description_courte }}</p>
+                    {% endif %}
+
+                    <div class="d-flex align-items-center justify-content-end text-primary">
+                      <i class="fa-solid fa-up-right-from-square"></i>  
+                    </div>
+
+                  </div>
+                </div>
+
+              </a>
+
+            </div>
+          {% endfor %}
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+</div>

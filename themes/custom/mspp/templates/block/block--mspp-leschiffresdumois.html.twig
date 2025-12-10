@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ */
+#}
+
+<div style="background-color: #E8F8F3">
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h3{{ title_attributes }} class="text-center mt-4 mb-4">{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+
+  <div class="row mt-5 g-0">
+    <div class="col-sm-6">
+      <img src="{{ file_url(content.field_photo_du_ministre[0]['#item'].entity.uri.value) }}" alt="{{ content.field_photo_du_ministre[0]['#item'].alt }}" class="img-fluid">
+    </div>
+    <div class="col-sm-6 p-5" style="background-color: var(--gray-color);">
+      <h3 class="mb-4">{{ content.field_nom[0]['#context'].value }}</h3>
+      <p class="mb-4">Ministre de la Santé Publique et de la Population</p>
+
+      <a href="{{ content.field_lien[0]['#url'] }}" class="btn btn-primary">Biographie</a>
+    </div>
+  </div>
+</div>
+</div>

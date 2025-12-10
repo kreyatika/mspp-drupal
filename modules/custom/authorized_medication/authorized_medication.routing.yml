@@ -1,0 +1,31 @@
+authorized_medication.list:
+  path: '/admin/medications'
+  defaults:
+    _controller: '\Drupal\authorized_medication\Controller\MedicationController::listMedications'
+    _title: 'Médicaments autorisés'
+  requirements:
+    _permission: 'access content'
+
+authorized_medication.public:
+  path: '/medicaments-autorises'
+  defaults:
+    _controller: '\Drupal\authorized_medication\Controller\MedicationController::publicList'
+    _title: 'Médicaments autorisés'
+  requirements:
+    _permission: 'access content'
+
+authorized_medication.add:
+  path: '/admin/medications/add'
+  defaults:
+    _form: '\Drupal\authorized_medication\Form\AddMedicationForm'
+    _title: 'Ajouter un médicament'
+  requirements:
+    _permission: 'access content'
+
+authorized_medication.import:
+  path: '/admin/medications/import'
+  defaults:
+    _form: '\Drupal\authorized_medication\Form\ImportMedicationForm'
+    _title: 'Importer des médicaments'
+  requirements:
+    _permission: 'access content'

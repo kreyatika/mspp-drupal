@@ -1,0 +1,5 @@
+medications:
+  version: 1.x
+  css:
+    theme:
+      css/medications.css: {}

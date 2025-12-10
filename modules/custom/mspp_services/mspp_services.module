@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for MSPP Services module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function mspp_services_theme() {
+  return [
+    'mspp_services_page' => [
+      'template' => 'services',
+      'variables' => [
+        'services' => [],
+        'categories' => [],
+        'form' => [],
+      ],
+    ],
+    'schools_page' => [
+      'template' => 'node--16',
+      'variables' => [
+        'schools' => [],
+        'departments' => [],
+        'programs' => [],
+      ],
+    ],
+  ];
+}

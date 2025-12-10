@@ -1,0 +1,7 @@
+name: Contact
+type: module
+description: 'Contact page module for MSPP'
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:block

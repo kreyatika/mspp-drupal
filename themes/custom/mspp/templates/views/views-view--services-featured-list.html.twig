@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for Services Featured List view.
+ */
+#}
+
+<div class="services-featured-list">
+  {% if rows %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {{ rows }}
+    </div>
+  {% else %}
+    {{ empty }}
+  {% endif %}
+</div>

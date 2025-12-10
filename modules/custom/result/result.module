@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Result module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function result_theme() {
+  return [
+    'result_exam' => [
+      'variables' => [
+        'result' => NULL,
+      ],
+    ],
+  ];
+}

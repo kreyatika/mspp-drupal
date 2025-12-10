@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override for Services Featured List view row.
+ */
+#}
+
+<div class="p-3 border rounded shadow-sm h-100 d-flex flex-column">
+
+  {# Icon + Title #}
+  <div class="d-flex align-items-center gap-3 mb-2">
+    {% if fields.field_service_icon.content %}
+      <div class="flex-shrink-0">
+        {{ fields.field_service_icon.content }}
+      </div>
+    {% endif %}
+
+    {% if fields.title.content %}
+      <h6 class="mb-0 fw-semibold text-secondary">
+        {{ fields.title.content }}
+      </h6>
+    {% endif %}
+  </div>
+
+  {# Description #}
+  {% if fields.field_service_desc.content %}
+    <p class="mb-0 text-muted lh-base small">
+      {{ fields.field_service_desc.content|striptags|trim }}
+    </p>
+  {% endif %}
+
+</div>

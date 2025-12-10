@@ -1,0 +1,84 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display directions.
+ *
+ * Available variables:
+ * - directions: List of directions.
+ * - filter_terms: List of taxonomy terms for filtering.
+ */
+#}
+
+<div class="row">
+ <div class="col-lg-4">
+    <div class="sidebar-left">
+            {% if filter_terms %}
+              <div class="accordion" id="directionsAccordion">
+                {% for term in filter_terms %}
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ term.id }}">
+                      {% if term.children %}
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ term.id }}" aria-expanded="false" aria-controls="collapse{{ term.id }}">
+                          {{ term.name }}
+                        </button>
+                      {% else %}
+                        <a href="{{ term.url }}" class="accordion-button collapsed" style="text-decoration: none;">
+                          {{ term.name }}
+                        </a>
+                      {% endif %}
+                    </h2>
+                    {% if term.children %}
+                      <div id="collapse{{ term.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ term.id }}" data-bs-parent="#directionsAccordion">
+                        <div class="accordion-body">
+                          <ul class="list-unstyled mb-0">
+                            {% for child in term.children %}
+                              <li class="mb-2">
+                                <a href="{{ child.url }}">{{ child.name }}</a>
+                                {% if child.children %}
+                                  <ul class="list-unstyled ms-3 mt-2">
+                                    {% for grandchild in child.children %}
+                                      <li class="mb-1"><a href="{{ grandchild.url }}">{{ grandchild.name }}</a></li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+        </div>
+  </div>
+  <div class="col-lg-8">
+    <div>
+      {% if directions %}
+        <div class="row">
+          {% for direction in directions %}
+            <div class="col-lg-12 mb-4">
+                  <div class="d-flex justify-content-start gap-3 align-items-center mb-3">
+                    <h5 class="card-title mb-0">{{ direction.title }}</h5>
+                  </div>
+                  
+                  {% if direction.description %}
+                    <p class="card-text">{{ direction.description|striptags|length > 150 ? direction.description|striptags|slice(0, 150) ~ '...' : direction.description|striptags }}</p>
+                  {% endif %}
+
+                  <a href="{{ direction.url }}" class="btn btn-outline-primary">{{ 'En savoir plus'|t }}</a>
+            </div>
+            <hr>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="alert alert-info">
+          {{ 'Aucune direction disponible.'|t }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  
+ 
+</div>

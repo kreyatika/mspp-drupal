@@ -1,0 +1,5 @@
+orgchart.configuration.add:
+  route_name: orgchart.configuration.add
+  title: 'Add orgchart'
+  appears_on:
+    - orgchart.configuration

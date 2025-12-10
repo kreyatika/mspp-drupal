@@ -1,0 +1,35 @@
+<header class="site-header">
+  <div class="container">
+    {{ page.header }}
+  </div>
+</header>
+
+<div class="main-menu">
+{{ page.menu }}
+</div>
+
+{% if not is_front %}
+<div class="page-title-wrapper">
+  <div class="container">
+      {{ title_prefix }}
+      {% if title %}
+        <h1>{{ title }}</h1>
+      {% endif %}
+      {{ title_suffix }}
+  </div>
+</div>
+{% endif %}
+
+<main>
+  <div class="container">
+    <div class="row">
+        {{ page.content }}
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer py-3 mt-4">
+  <div class="container">
+    {{ page.footer }}
+  </div>
+</footer>

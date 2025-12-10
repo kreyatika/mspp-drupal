@@ -1,0 +1,52 @@
+orgchart.configuration:
+  path: '/admin/config/orgchart'
+  defaults:
+    _form: 'Drupal\orgchart\Form\OrgchartConfigForm'
+    _title: 'Orgcharts'
+  requirements:
+    _permission: 'administer orgchart'
+
+orgchart.configuration.add:
+  path: '/admin/config/orgchart/add'
+  defaults:
+    _form: 'Drupal\orgchart\Form\OrgchartAddForm'
+    _title: 'Add Orgchart'
+  requirements:
+    _permission: 'administer orgchart'
+
+orgchart.configuration.chart.build:
+  path: '/admin/config/orgchart/build/{id}/{display}'
+  defaults:
+    _form: 'Drupal\orgchart\Form\OrgchartBuildForm'
+    _title: 'Build Orgchart'
+    display: desktop
+  requirements:
+    _permission: 'administer orgchart'
+
+orgchart.configuration.chart.yaml:
+  path: '/admin/config/orgchart/yaml/{id}/{display}'
+  defaults:
+    _form: 'Drupal\orgchart\Form\OrgchartYamlForm'
+    _title: 'Orgchart YAML editor'
+    display: desktop
+  requirements:
+    _permission: 'administer orgchart yaml'
+
+orgchart.configuration.chart.edit:
+  path: '/admin/config/orgchart/edit/{id}'
+  defaults:
+    _form: 'Drupal\orgchart\Form\OrgchartEditForm'
+    _title: 'Edit Orgchart'
+  requirements:
+    _permission: 'administer orgchart'
+
+orgchart.configuration.chart.delete:
+  path: '/admin/config/orgchart/delete/{id}'
+  defaults:
+    _form: 'Drupal\orgchart\Form\OrgchartDeleteForm'
+    _title: 'Delete Orgchart'
+  requirements:
+    _permission: 'administer orgchart'
+
+route_callbacks:
+  - '\Drupal\orgchart\Routing\OrgchartRoutes::routes'

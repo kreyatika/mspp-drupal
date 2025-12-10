@@ -1,0 +1,136 @@
+<?php
+
+/**
+ * @file
+ * Adds the back to top button.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_page_attachments().
+ */
+function back_to_top_page_attachments(array &$attachments) {
+  $config = \Drupal::config('back_to_top.settings');
+  $settings = $config->get();
+  $button_settings = [
+    'back_to_top_prevent_on_mobile' => $config->get('back_to_top_prevent_on_mobile') ?? FALSE,
+    'back_to_top_prevent_in_admin' => $config->get('back_to_top_prevent_in_admin') ?? FALSE,
+    'back_to_top_button_type' => $config->get('back_to_top_button_type') ?? 'image',
+    'back_to_top_button_text' => $config->get('back_to_top_button_text') ?? 'Back to top',
+    'back_to_top_speed' => $config->get('back_to_top_speed') ?? 1200,
+  ];
+  if ($config->get('back_to_top_prevent_in_admin', FALSE) && (is_adminpage())) {
+    return FALSE;
+  }
+  if ($config->get('back_to_top_prevent_in_front', FALSE) && (\Drupal::service('path.matcher')
+    ->isFrontPage())
+  ) {
+    return FALSE;
+  }
+
+  $attachments['#attached']['library'][] = 'back_to_top/back_to_top_js';
+  $attachments['#attached']['drupalSettings']['back_to_top']['back_to_top_button_trigger'] = $config->get('back_to_top_button_trigger', 100);
+  $attachments['#attached']['drupalSettings']['back_to_top']['back_to_top_speed'] = $config->get('back_to_top_speed', 1200);
+
+  // Add stylesheet for image or text/css button.
+  if ($config->get('back_to_top_button_type', 'image') == "text") {
+    $attachments['#attached']['library'][] = 'back_to_top/back_to_top_text';
+  }
+  else {
+    $attachments['#attached']['library'][] = 'back_to_top/back_to_top_icon';
+  }
+
+  $css = '';
+  $hover_css = '';
+  // Check variables and add placement.
+  if ($config->get('back_to_top_button_place', 1) == 2) {
+    $css .= "left: 10px; ";
+  }
+  if ($config->get('back_to_top_button_place', 1) == 3) {
+    $css .= "left: 50%; margin-left: -50px;";
+  }
+  if ($config->get('back_to_top_button_place', 1) == 4) {
+    $css .= "top: 10px;";
+  }
+  if ($config->get('back_to_top_button_place', 1) == 5) {
+    $css .= "top: 10px; left: 10px;";
+  }
+  if ($config->get('back_to_top_button_place', 1) == 6) {
+    $css .= "top: 10px; left: 50%; margin-left: -50px;";
+  }
+  if ($config->get('back_to_top_button_place', 1) == 7) {
+    $css .= "top: 50%;";
+  }
+  if ($config->get('back_to_top_button_place', 1) == 8) {
+    $css .= "top: 50%; left: 10px;";
+  }
+  if ($config->get('back_to_top_button_place', 1) == 9) {
+    $css .= "top: 50%; left: 50%; margin-left: -50px;";
+  }
+  // Check variables and add color from settings
+  if (($config->get('back_to_top_button_type', 'image') == "text") && ($config->get('back_to_top_bg_color', '#F7F7F7') !== '#F7F7F7')) {
+    $css .= "background: " . $config->get('back_to_top_bg_color', '#F7F7F7') . ";";
+  
+  }
+  if (($config->get('back_to_top_button_type', 'image') == "text") && ($config->get('back_to_top_border_color', '#CCCCCC') !== '#CCCCCC')) {
+    $css .= "border-color: " . $config->get('back_to_top_border_color', '#CCCCCC') . ";";
+  }
+  if (($config->get('back_to_top_button_type', 'image') == "text") && ($config->get('back_to_top_hover_color', '#EEEEEE') !== '#EEEEEE')) {
+    $hover_css .= "body #backtotop:hover { background: " . $config->get('back_to_top_hover_color', '#EEEEEE') . "; border-color: " . $config->get('back_to_top_hover_color', '#EEEEEE') . "; }";
+  }
+  if (($config->get('back_to_top_button_type', 'image') == "text") && ($config->get('back_to_top_text_color', '#333333') !== '#333333')) {
+    $css .= "color: " . $config->get('back_to_top_text_color', '#333333') . ";";
+  }
+
+  if ($css != '') {
+    $attachments['#attached']['html_head'][] = [
+      [
+        '#tag' => 'style',
+        '#value' => 'body #backtotop {' . $css . '}' . $hover_css,
+      ],
+      'css',
+    ];
+  }
+
+  // Add settings to js.
+  $attachments['#attached']['drupalSettings']['back_to_top'] += $button_settings;
+}
+
+/**
+ * Check adminpage.
+ *
+ * Check if page viewed is in admin section or a node/edit for possible option
+ * to not include javascript and css in that case.
+ */
+function is_adminpage() {
+  $route = \Drupal::routeMatch()->getRouteObject();
+  $is_admin = \Drupal::service('router.admin_context')->isAdminRoute($route);
+
+  // Alter for admin prevent check.
+  \Drupal::moduleHandler()->alter('back_to_top_admin_prevent', $is_admin);
+
+  return $is_admin;
+}
+
+/**
+ * Implements hook_help().
+ */
+function back_to_top_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.back_to_top':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}

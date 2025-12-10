@@ -1,0 +1,9 @@
+services:
+  version: 1.x
+  css:
+    theme:
+      css/services.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

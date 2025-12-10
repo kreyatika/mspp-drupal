@@ -1,0 +1,85 @@
+{#
+/**
+ * @file
+ * Theme override for the "L'actualité en vidéos" view with YouTube embeds.
+ */
+#}
+
+<h3 class="mb-4">L'actualité en vidéos</h3>
+
+{% if rows is not empty %}
+
+  {# --------------------------------------------------------
+     MACRO: Extract YouTube Video ID from any embed or URL
+     -------------------------------------------------------- #}
+  {% macro youtube_id(html) %}
+{%- if html matches '/v=([A-Za-z0-9_-]+)/' -%}
+{{ html|split('v=')[1]|split('&')[0]|split('"')[0]|trim }}
+{%- elseif html matches '/youtu\\.be\\/([A-Za-z0-9_-]+)/' -%}
+{{ html|split('youtu.be/')[1]|split('?')[0]|split('"')[0]|trim }}
+{%- elseif html matches '/embed\\/([A-Za-z0-9_-]+)/' -%}
+{{ html|split('embed/')[1]|split('?')[0]|split('"')[0]|trim }}
+{%- else -%}
+{%- endif -%}
+  {% endmacro %}
+
+  {% import _self as utils %}
+
+  {# -----------------------------
+     LATEST VIDEO (index: 0)
+     ----------------------------- #}
+
+  {% set html = view.style_plugin.getField(0, 'field_video_link')|striptags|trim %}
+  {% set youtube = utils.youtube_id(html)|trim %}
+
+  <div class="row mb-4 g-0">
+    <div class="col-md-6">
+      <div class="ratio ratio-16x9">
+        <iframe
+          src="https://www.youtube.com/embed/{{ youtube }}"
+          title="{{ view.style_plugin.getField(0, 'title') }}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-light p-4 h-100 overflow-hidden">
+        <h4 class="mt-3 mb-3">{{ view.style_plugin.getField(0, 'title') }}</h4>
+        <p class="text-muted">{{ view.style_plugin.getField(0, 'field_video_desc') }}</p>
+      </div>
+    </div>
+  </div>
+
+  {# ------------------------------------------
+     NEXT VIDEOS (max 3 after the first)
+     ------------------------------------------ #}
+  {% set total = view.result|length %}
+  {% set max_items = 3 %}
+  {% set items = (total - 1) < max_items ? (total - 1) : max_items %}
+
+  {% if items > 0 %}
+    <div class="row">
+      {% for i in 1..items %}
+        {% set html = view.style_plugin.getField(i, 'field_video_link')|striptags|trim %}
+        {% set youtube = utils.youtube_id(html)|trim %}
+
+        <div class="col-lg-4 mb-4">
+          <div class="ratio ratio-16x9 mb-3">
+            <iframe
+              src="https://www.youtube.com/embed/{{ youtube }}"
+              title="{{ view.style_plugin.getField(i, 'title') }}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <h5 class="mb-2">{{ view.style_plugin.getField(i, 'title') }}</h5>
+          <p class="text-muted">{{ view.style_plugin.getField(i, 'field_video_desc') }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+{% else %}
+  {{ empty }}
+{% endif %}

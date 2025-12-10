@@ -1,0 +1,4 @@
+services:
+  mspp_services.healthcare_api:
+    class: Drupal\mspp_services\Service\HealthcareApiService
+    arguments: ['@http_client_factory']

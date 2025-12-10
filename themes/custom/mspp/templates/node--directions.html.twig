@@ -1,0 +1,91 @@
+{#
+/**
+ * @file
+ * Template for a single direction page.
+ *
+ * Available variables:
+ * - direction: Direction data with fields:
+ *   - id, title, mission, directeur, photo, email, telephone,
+ *   - formation, parcours, depuis, ne_a, cadre_cles
+ */
+#}
+
+  <div class="row">
+    <div class="col-lg-3 border-right-column">
+      <div class="sidebar-left">
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="#mission">{{ 'Mission'|t }}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#biographie">{{ 'Biographie'|t }}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cadre-cles">{{ 'Cadre clés'|t }}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#coordonnees">{{ 'Coordonnées'|t }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-9 px-lg-5 px-3">
+
+      {% if direction.mission %}
+        <div id="mission" class="direction-mission mb-4">
+          <h4>{{ 'Mission'|t }}</h4>
+          <p>{{ direction.mission|raw }}</p>
+        </div>
+      {% endif %}
+
+      {% if direction.directeur %}
+          <h5>{{ direction.directeur }}</h5>
+          <p class="lead">{{ direction.title }}  </p>
+      {% endif %}
+
+      <hr>
+
+      {% if direction.depuis %}
+        <p><strong>{{ 'En poste depuis:'|t }}</strong> {{ direction.depuis }}</p>
+      {% endif %}
+
+      {% if direction.photo %}
+        <div class="direction-photo mb-4">
+          {{ direction.photo }}
+        </div>
+      {% endif %}
+
+      <h4 id="biographie"> Biographie </h4>
+
+      {% if direction.ne_a %}
+        <p><strong>{{ 'Né(e) à:'|t }}</strong> {{ direction.ne_a }}</p>
+      {% endif %}
+
+      <h6 class="text-decoration-underline"> Formation </h6>
+      <p>{{ direction.formation|raw }}</p>
+
+      <h6 class="text-decoration-underline"> Parcours </h6>
+      <p>{{ direction.parcours|raw }}</p>
+
+       {% if direction.cadre_cles %}
+        <div id="cadre-cles" class="direction-cadres mb-4">
+          <h4>{{ 'Cadres Clés'|t }}</h4>
+          <p>{{ direction.cadre_cles|raw }}</p>
+        </div>
+      {% endif %}
+
+      {% if direction.email or direction.telephone %}
+        <div id="coordonnees" class="direction-contact mb-4">
+          <h4>{{ 'Coordonnées'|t }}</h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>{{ 'Email'|t }}</th>
+                <th>{{ 'Téléphone'|t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{% if direction.email %}{{ direction.email }}{% endif %}</td>
+                <td>{% if direction.telephone %}{{ direction.telephone }}{% endif %}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+

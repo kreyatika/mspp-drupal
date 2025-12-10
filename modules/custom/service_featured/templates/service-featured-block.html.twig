@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Template for the Service Featured block.
+ *
+ * Available variables:
+ * - items: Array of service items with name, description, url, link_title, photo_url.
+ */
+#}
+
+<div class="service-featured-block">
+  {% if items %}
+    <div class="row">
+      {% for item in items %}
+        <div>
+          <div class="card h-100">
+            {% if item.photo_url %}
+              <img src="{{ item.photo_url }}" class="card-img-top" alt="{{ item.name }}">
+            {% endif %}
+            <div class="card-body p-4">
+              <h5 class="card-title">{{ item.name }}</h5>
+              {% if item.description %}
+                <p class="card-text">{{ item.description }}</p>
+              {% endif %}
+              {% if item.url %}
+                <a href="{{ item.url }}" class="btn btn-primary">
+                  {{ item.link_title ?: 'En savoir plus' }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

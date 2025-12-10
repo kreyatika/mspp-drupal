@@ -1,0 +1,119 @@
+{#
+/**
+ * @file
+ * Theme override for the Hero Section block.
+ */
+#}
+
+{% set image_uri = content.field_hero_image[0]['#item'].entity.uri.value %}
+
+<div class="hero-section" style="background-image: url('{{ file_url(image_uri) }}');">
+  <div class="hero-overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          
+          {% if content.field_hero_title %}
+            <h1 class="hero-title">{{ content.field_hero_title.0 }}</h1>
+          {% endif %}
+
+          {% if content.field_hero_subtitle %}
+            <p class="hero-subtitle">{{ content.field_hero_subtitle.0 }}</p>
+          {% endif %}
+
+          {# Search form #}
+          <div class="hero-search-form mb-4">
+            <form action="/search" method="get" class="d-flex">
+              <input type="text" name="keys" class="form-control" placeholder="Rechercher un service ou une information...">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa fa-search"></i> Rechercher
+              </button>
+            </form>
+          </div>
+
+          {# CTA Buttons #}
+          <div class="hero-buttons">
+            <a href="/services" class="btn btn-outline-light me-2">Services en ligne</a>
+            <a href="/alertes" class="btn btn-link text-white">Alertes sanitaires</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 350px;
+  position: relative;
+}
+
+.hero-overlay {
+  background: linear-gradient(to right, rgba(20, 79, 90, 0.9) 0%, rgba(20, 79, 90, 0.6) 50%, transparent 100%);
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.hero-title {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+}
+
+.hero-search-form .form-control {
+  border: none;
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+.hero-search-form .btn {
+  border-radius: 0;
+  padding: 0.75rem 1.5rem;
+  white-space: nowrap;
+}
+
+.hero-buttons .btn-outline-light {
+  border-width: 2px;
+  padding: 0.5rem 1.5rem;
+}
+
+.hero-buttons .btn-link {
+  text-decoration: none;
+}
+
+.hero-buttons .btn-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: auto;
+  }
+  
+  .hero-overlay {
+    background: rgba(20, 79, 90, 0.85);
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+}
+</style>

@@ -1,0 +1,11 @@
+schools-filter:
+  version: 1.x
+  css:
+    theme:
+      css/schools.css: {}
+  js:
+    js/schools-filter.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

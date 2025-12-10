@@ -1,0 +1,4 @@
+service_featured:
+  css:
+    component:
+      css/service-featured.css: {}

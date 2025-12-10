@@ -1,0 +1,33 @@
+defaults:
+  colors:
+    bgcolor: '#064771'
+    textcolor: '#ffffff'
+    textsize: '15'
+    descbgcolor: '#000000'
+    desctextcolor: '#ffffff'
+    linebgcolor: '#064771'
+    levels:
+      1:
+        bgcolor: '#064771'
+        textcolor: '#fff'
+      2:
+        bgcolor: '#035EA5'
+        textcolor: '#fff'
+      3:
+        bgcolor: '#0098DB'
+        textcolor: '#fff'
+      4:
+        bgcolor: '#00cfdb'
+        textcolor: '#fff'
+      5:
+        bgcolor: '#00dbb0'
+        textcolor: '#fff'
+  desktop:
+    active: 1
+    width: '1200'
+  tablet:
+    active: 1
+    width: '900'
+  phone:
+    active: 1
+    width: '500'

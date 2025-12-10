@@ -1,0 +1,7 @@
+name: Result
+type: module
+description: 'Provides exam result functionality using external API'
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:block
