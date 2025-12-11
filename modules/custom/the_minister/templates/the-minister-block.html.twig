@@ -4,25 +4,22 @@
  * Template for The Minister block.
  */
 #}
-<div class="container">
-  <div class="row g-0">
-    <div class="col-sm-6">
-      {% if photo_url %}
-        <img src="{{ photo_url }}" alt="{{ name }}" class="img-fluid">
-      {% endif %}
+<div class="row g-0">
+    <div class="col-lg-6">
+        {% if photo_url %}
+            <img src="{{ photo_url }}" alt="{{ name }}" class="img-fluid">
+        {% endif %}
     </div>
-    <div class="col-sm-6 p-4 p-lg-5">
-      {% if name %}
-        <h3 class="mb-4">{{ name }}</h3>
-      {% endif %}
-      <p class="mb-4">Ministre de la Santé Publique et de la Population</p>
-      <a href="#" class="btn btn-primary">Biographie</a>
+    <div class="col-lg-6 p-4 p-lg-5 bg-light">
+        {% if name %}
+            <h3 class="">{{ name }}</h3>
+        {% endif %}
+        <p class="mb-4 lead">Ministre de la Santé Publique et de la Population</p>
+        <a href="#" class="btn btn-primary">Biographie</a>
 
-     <ul class="the-minister-menu p-0">
-     {{ drupal_menu('the-minister') }}
-     </ul>
-
+        <hr class="mt-4">
+        <div class="the-minister-menu p-0">
+            {{ drupal_menu('the-minister') }}
+        </div>
     </div>
-  </div>
 </div>
-

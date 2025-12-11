@@ -1,0 +1,115 @@
+{#
+/**
+ * @file
+ * Template for MSPP search results page.
+ */
+#}
+
+<div class="mspp-search-page">
+    <div class="container">
+        <div class="row g-5">
+            {# Filters Sidebar #}
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <h2 class="h5 fw-bold mb-3">Filtres</h2>
+                <form class="search-filters" action="" method="get">
+                    {# Search Input #}
+                    <div class="mb-4">
+                        <div class="input-group">
+                            <input type="text" 
+                                   class="form-control" 
+                                   name="q" 
+                                   value="{{ keywords }}" 
+                                   placeholder="Rechercher...">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    {# Sort Options #}
+                    <div class="mb-4">
+                        <p class="fw-semibold mb-2">Trier les résultats par</p>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="sort" id="sortRelevance" value="relevance" checked>
+                            <label class="form-check-label" for="sortRelevance">Pertinence</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sort" id="sortDate" value="date">
+                            <label class="form-check-label" for="sortDate">Date de Création</label>
+                        </div>
+                    </div>
+
+                    {# Exact Match #}
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="exact" id="exactMatch" value="1">
+                            <label class="form-check-label" for="exactMatch">Expression exacte</label>
+                        </div>
+                    </div>
+
+                    {# Show Excerpts #}
+                    <div class="mb-4">
+                        <p class="fw-semibold mb-2">Afficher les extraits</p>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="excerpts" id="excerptsYes" value="1" checked>
+                            <label class="form-check-label" for="excerptsYes">Oui</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="excerpts" id="excerptsNo" value="0">
+                            <label class="form-check-label" for="excerptsNo">Non</label>
+                        </div>
+                    </div>
+
+                    {# Buttons #}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                        <a href="?" class="btn btn-outline-secondary">Réinitialiser</a>
+                    </div>
+                </form>
+            </div>
+
+            {# Results Section #}
+            <div class="col-lg-9">
+                {% if keywords %}
+                    <h2 class="h5 fw-bold mb-4">
+                        {{ result_count }} résultat(s) correspondent à vos critères
+                    </h2>
+
+                    {% if results %}
+                        <div class="results-list">
+                            {% for result in results %}
+                                <div class="border py-4 p-3">
+                                    <p class="text-muted small mb-2">{{ result.date }}</p>
+                                    <h3 class="h5 fw-bold mb-2">
+                                        <a href="{{ result.url }}" class="text-primary text-decoration-none">
+                                            {{ result.title }}
+                                        </a>
+                                    </h3>
+                                    {% if result.excerpt %}
+                                        <p class="text-muted mb-3">{{ result.excerpt }}</p>
+                                    {% endif %}
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted text-truncate" style="max-width: 80%;">{{ result.display_url }}</small>
+                                        <a href="{{ result.url }}" class="text-primary">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-light border">
+                            <i class="fa fa-info-circle me-2"></i>
+                            Aucun contenu ne correspond à votre recherche. Essayez avec d'autres mots-clés.
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="text-center text-muted py-5">
+                        <i class="fa fa-search fa-3x mb-3 opacity-50"></i>
+                        <p>Entrez un terme de recherche pour trouver du contenu.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

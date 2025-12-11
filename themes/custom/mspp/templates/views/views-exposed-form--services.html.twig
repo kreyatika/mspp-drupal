@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme override for Services view exposed form.
+ */
+#}
+
+<form{{ attributes }}>
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
+
+  {# Categories/Types Select #}
+  {% if form.field_service_category_target_id is defined %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Types</label>
+      {{ form.field_service_category_target_id|merge({'#attributes': {'class': ['form-control form-select']}}) }}
+    </div>
+  {% elseif form.tid is defined %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Types</label>
+      {{ form.tid|merge({'#attributes': {'class': ['form-control form-select']}}) }}
+    </div>
+  {% endif %}
+
+  {# Search Input - check multiple possible field names #}
+  {% set search_field = null %}
+  {% if form.search_api_fulltext is defined %}
+    {% set search_field = form.search_api_fulltext %}
+  {% elseif form.title is defined %}
+    {% set search_field = form.title %}
+  {% elseif form.combine is defined %}
+    {% set search_field = form.combine %}
+  {% elseif form.keys is defined %}
+    {% set search_field = form.keys %}
+  {% endif %}
+
+  {% if search_field %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Rechercher par mots-clés</label>
+      <input type="text" name="{{ search_field['#name'] }}" class="form-control" placeholder="Rechercher..." value="{{ search_field['#value']|default('') }}">
+    </div>
+  {% endif %}
+
+  {# Render any other form elements not explicitly handled #}
+  {% set handled_keys = ['form_build_id', 'form_token', 'form_id', 'search_api_fulltext', 'title', 'combine', 'keys', 'field_service_category_target_id', 'tid', 'actions'] %}
+  {% for key, element in form %}
+    {% if key not in handled_keys and key|first != '#' %}
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Rechercher par mots-clés</label>
+        <input type="text" class="form-control" name="{{ key }}" placeholder="Rechercher...">
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {# Action Buttons #}
+  <div class="d-grid mt-3">
+    <button type="submit" class="btn btn-primary">
+      <i class="fa fa-search me-2"></i>
+      Filtrer
+    </button>
+  </div>
+</form>

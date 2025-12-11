@@ -6,11 +6,18 @@
 #}
 
 <div class="latest-news">
-  {% if rows %}
-   <div class="row row-cols-lg-2 row-cols-md-2 row-cols-1 g-4">
-    {{ rows }}
-    </div>
-  {% else %}
-    {{ empty }}
-  {% endif %}
+    {% if rows %}
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 gx-4">
+            {{ rows }}
+        </div>
+    {% else %}
+        {{ empty }}
+    {% endif %}
+</div>
+
+<div class="text-md-start mt-4">
+    <a href="" class="btn btn-outline-primary full-width">
+        Toutes les actualités
+        <i class="fa fa-arrow-right"></i>
+    </a>
 </div>

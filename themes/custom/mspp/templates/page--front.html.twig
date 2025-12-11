@@ -20,13 +20,6 @@
     <div class="row g-4">
         <div class="col-lg-8">
             {{ drupal_view('latest_news') }}
-
-            <div class="text-md-start mt-4">
-                <a href="" class="btn btn-outline-primary full-width">
-                    Toutes les actualités
-                    <i class="fa fa-arrow-right"></i>
-                </a>
-            </div>
         </div>
 
         <div class="col-lg-4">
@@ -35,7 +28,11 @@
     </div>
 </div>
 
-<div class="container mt-3">
+<div class="container py-4">
+    <hr>
+</div>
+
+<div class="container">
     <div class="row">
         <div class="col-sm-12">
             <h3 class="mt-2 mb-4">
@@ -45,43 +42,45 @@
     </div>
 </div>
 
-<div class="row bg-health ">
+<div class="container">
     {{ drupal_block('the_minister') }}
 </div>
 
-<div
-    class="container py-4">
-
+<div class="container py-4">
     {# Section title #}
     <div class="row mb-4">
         <div class="col-lg-12">
             <h3 class="mb-0">Nos services et outils</h3>
         </div>
     </div>
+</div>
 
-    <div
-        class="row g-4">
+<div class="bg-primary">
+    <div class="container py-5">
+        <div class="row g-4">
+            {# Left content: services list + button #}
+            <div class="col-lg-8">
+                {{ drupal_view('services_featured_list') }}
+            </div>
 
-        {# Left content: services list + button #}
-        <div class="col-lg-8">
-
-            {{ drupal_view('services_featured_list') }}
-
-            <div class="text-start text-lg-start mt-4">
-                <a href="" class="btn btn-outline-primary">
-                    Tous nos services
-                    <i class="fa fa-arrow-right"></i>
-                </a>
+            {# Right content: featured block #}
+            <div class="col-lg-4">
+                {{ drupal_block('service_featured') }}
             </div>
 
         </div>
-
-        {# Right content: featured block #}
-        <div class="col-lg-4">
-            {{ drupal_block('service_featured') }}
-        </div>
-
     </div>
+</div>
+
+<div class="container mt-4">
+    <a href="" class="btn btn-outline-primary">
+        Tous nos services
+        <i class="fa fa-arrow-right"></i>
+    </a>
+</div>
+
+<div class="container py-3">
+    <hr>
 </div>
 
 <div class="container">

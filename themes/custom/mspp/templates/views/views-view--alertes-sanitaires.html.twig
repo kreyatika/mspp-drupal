@@ -4,72 +4,23 @@
  * Theme override for Alertes Sanitaires view.
  */
 #}
-<div class="card border-0 alertes-sanitaires">
-  <div class="card-body p-4">
-    <h4 class="card-title mb-4">
-      <i class="fa-regular fa-bell text-danger me-2"></i>
-      <span class="fw-bold">Alertes sanitaires</span>
-    </h4>
-    
-    {% if rows %}
-      <div>
-        {{ rows }}
-      </div>
-  
-    {% else %}
-      {{ empty }}
-    {% endif %}
-    
-    <div class="text-center mt-4">
-      <a href="https://mspp.gouv.ht/alertes-sanitaires" class="btn btn-outline-danger">Toutes les alertes</a>
+<div class="card border-0 p-2" style="background: #FFF4F4;">
+    <div class="card-body p-4">
+        <h4 class="card-title mb-4">
+            <i class="fa-solid fa-triangle-exclamation text-danger me-2"></i>
+            <span class="fw-bold text-danger">Alertes sanitaires</span>
+        </h4>
+
+        {% if rows %}
+            <div>
+                {{ rows }}
+            </div>
+        {% else %}
+            {{ empty }}
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <a href="https://mspp.gouv.ht/alertes-sanitaires" class="btn btn-danger">Toutes les alertes</a>
+        </div>
     </div>
-  </div>
 </div>
-<style>
-.alertes-sanitaires {
-    background-color: #FDEAEA;
-}
-
-.alertes-sanitaires .views-row {
-    border-bottom: 1px solid #ccc;
-    margin-bottom:10px;
-    margin-top:10px;
-    padding-bottom:10px;
-}
-
-.alertes-sanitaires a { 
-    color: #303133;
-    text-decoration: none;
-}
-
-.alertes-sanitaires a:hover {
-    color: var(--secondary-color);
-    text-decoration: none;
-}
-
-.alertes-sanitaires .date {
-   color: #929292;
-   font-size:12px;
-}
-
-.alertes-sanitaires .date::before {
-   font-family: "Font Awesome 6 Free";
-   content: "\f017";
-   font-weight: 400;
-   margin-right: 5px;
-   color: #929292;
-   font-size: 12px;
-}
-
-.alertes-sanitaires .btn-outline-danger {
-    color: var(--danger-color);
-    border-color: var(--danger-color);
-    padding: 0.7rem 1rem;
-}
-
-.alertes-sanitaires .btn-outline-danger:hover {
-    background-color: var(--danger-color);
-    color: white;
-    
-}
-</style>

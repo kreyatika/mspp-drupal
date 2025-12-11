@@ -1,0 +1,7 @@
+mspp_search.page:
+  path: '/recherche'
+  defaults:
+    _controller: '\Drupal\mspp_search\Controller\SearchController::search'
+    _title: 'Recherche'
+  requirements:
+    _permission: 'access content'

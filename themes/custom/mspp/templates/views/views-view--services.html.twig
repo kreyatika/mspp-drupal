@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Theme override for Services view page.
+ */
+#}
+
+<div class="services-page">
+  <div class="container">
+    <div class="row g-5">
+
+      {# Filters Sidebar #}
+      <div class="col-lg-3 mb-4 mb-lg-0 sticky-top">
+        {% if exposed %}
+          <h2 class="h5 fw-bold mb-3">Filtres les résultats</h2>
+          {{ exposed }}
+        {% endif %}
+      </div>
+
+      {# Services Grid #}
+      <div class="col-lg-9">
+        {% if header %}
+          <div class="view-header mb-4">
+            {{ header }}
+          </div>
+        {% endif %}
+
+        {% if rows %}
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {{ rows }}
+          </div>
+        {% elseif empty %}
+          <div class="alert alert-info">
+            {{ empty }}
+          </div>
+        {% endif %}
+
+        {% if pager %}
+          <div class="mt-4">
+            {{ pager }}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>

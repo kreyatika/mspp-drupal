@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for Alertes Sanitaires view row fields.
+ */
+#}
+<div class="border-bottom border-secondary-subtle py-3">
+  {# Title #}
+  <a href="{{ fields.view_node.content|striptags|trim }}" class="text-dark text-decoration-none">
+    <h6 class="mb-2 fw-normal">{{ fields.title.content|striptags|trim }}</h6>
+  </a>
+  
+  {# Date #}
+  <p class="text-secondary small mb-0">
+    <i class="fa-regular fa-clock me-1"></i>
+    {{ fields.created.content|striptags|trim }}
+  </p>
+</div>

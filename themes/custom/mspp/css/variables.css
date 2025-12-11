@@ -46,6 +46,10 @@ a:hover { text-decoration: underline !important; }
 .border-light { border-color: var(--bs-light) !important; }
 .border-dark { border-color: var(--bs-dark) !important; }
 
+.btn {
+  padding: 0.6rem 0.9rem;
+}
+
 .btn-primary { 
   background-color: var(--bs-primary) !important; 
   border-color: var(--bs-primary) !important; 

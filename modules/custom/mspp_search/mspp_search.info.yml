@@ -1,0 +1,5 @@
+name: MSPP Search
+type: module
+description: 'Custom search page for MSPP'
+package: Custom
+core_version_requirement: ^9 || ^10
