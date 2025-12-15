@@ -4,32 +4,21 @@
  * Theme override for Latest News view row fields.
  */
 #}
-<div
-    class="card border-0 h-100">
 
-    {# Image #}
-    <div class="ratio ratio-16x9">
-        <img src="{{ fields.field_news_photo.content|striptags|trim }}" alt="{{ fields.title.content|striptags|trim }}" class="object-fit-cover w-100 h-100">
-    </div>
+    {# Featured News Item (First Item Only) #}
 
-    <div
-        class="card-body p-0">
-
-        {# Title #}
-        <h5 class="mb-2 fw-bold mt-3 mb-3">
-            {{ fields.title.content }}
-        </h5>
-
-        {# Date #}
-        {# <p class="text-muted small mb-2">
-              <i class="fa-regular fa-calendar"></i> 
-              {{ fields.created.content }}
-            </p> #}
-
-        {# Body #}
-            <div class="card-text"> {{ fields.body.content }}
+        <div class="card border-0 h-100 latest-news-item">
+            <div class="ratio ratio-16x9">
+                <img src="{{ fields.field_news_photo.content|striptags|trim }}" alt="{{ fields.title.content|striptags|trim }}" class="object-fit-cover w-100 h-100">
+            </div>
+            <div class="card-body p-0">
+                <h4 class="fw-bold mb-3 mt-4 ">
+                    {{ fields.title.content }}
+                </h4>
+                <div class="card-text text-muted">
+                    {{ fields.body.content }}
+                </div>
+            </div>
         </div>
+    
 
-    </div>
-
-</div>

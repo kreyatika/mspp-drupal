@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for Latest News List view.
+ */
+#}
+
+<div class="latest-news-list">
+    {% if rows %}
+        <div class="row g-3">
+            {{ rows }}
+        </div>
+    {% else %}
+        {{ empty }}
+    {% endif %}
+</div>

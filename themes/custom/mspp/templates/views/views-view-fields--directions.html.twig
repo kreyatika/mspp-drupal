@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override to display all the fields in a row for Directions.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: An array of field output. Each entry contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT the output.
+ * - row: The raw result object from the query, with all data it fetched.
+ */
+#}
+
+{% if fields.title %}
+  <h4 class="card-title mb-3 text-dark">
+    {{ fields.title.content }}
+  </h4>
+{% endif %}
+
+{% if fields.field_direction_mission.content %}
+  <div class="card-text text-muted mb-3 small">
+    {{ fields.field_direction_mission.content }}
+  </div>
+{% endif %}
+
+{% if fields.view_node %}
+    {{ fields.view_node.content }}
+{% endif %}

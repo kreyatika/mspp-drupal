@@ -1,7 +1,7 @@
 /* Custom variables */
 :root {
   /* Bootstrap 5 CSS variable overrides */
-  --bs-primary: #20747C;
+  --bs-primary: #005D69;
   --bs-secondary: #144F5B;
   --bs-success: #009d48;
   --bs-info: #327bff;
@@ -10,8 +10,8 @@
   --bs-light: #E7EDF3;
   --bs-dark: #020200;
   --bs-health: #E8F8F3;
-
-  --font-primary: 'Open Sans', sans-serif;
+  --bs-link: #000091;
+  --font-primary: 'Inter', sans-serif;
 }
 
 /* Override Bootstrap utility classes */
@@ -24,9 +24,6 @@
 .bg-light { background-color: var(--bs-light) !important; }
 .bg-dark { background-color: var(--bs-dark) !important; }
 .bg-health { background-color: var(--bs-health) !important; }
-
-a { text-decoration: none !important; }
-a:hover { text-decoration: underline !important; }
 
 .text-primary { color: var(--bs-primary) !important; }
 .text-secondary { color: var(--bs-secondary) !important; }
@@ -182,6 +179,10 @@ a:hover { text-decoration: underline !important; }
 .btn-outline-dark:hover { 
   background-color: var(--bs-dark) !important; 
   color: #fff !important; 
+}
+
+a {
+  color: var(--bs-link);
 }
 
 @media(max-width: 768px) {

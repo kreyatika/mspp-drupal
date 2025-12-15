@@ -7,8 +7,9 @@ bootstrap:
 fonts:
   css:
     theme:
-      https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap: { type: external }
+      https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap: { type: external, preload: true }
       https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css: { type: external, minified: true }
+  header: true
 
 global-styling:
   version: 1.0.0
@@ -18,6 +19,7 @@ global-styling:
       css/menu.css: {}
       css/header.css: {}
       css/homepage.css: {}
+      css/footer.css: {}
       css/variables.css: {}                                                                                                    
   js:
     js/script.js: {}
@@ -52,5 +54,12 @@ menu-ministry:
   css:
     theme:
       css/menu-ministry.css: {}
+  dependencies:
+    - mspp/global-styling
+
+views-directions:
+  css:
+    theme:
+      css/views-directions.css: {}
   dependencies:
     - mspp/global-styling

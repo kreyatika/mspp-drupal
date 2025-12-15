@@ -1,0 +1,124 @@
+/**
+ * @file
+ * Footer styling for MSPP website theme - Simple version.
+ * Author: Kreyatika
+ */
+
+/* Footer Main Styles */
+.site-footer {
+    margin-top: auto;
+    font-size: 0.875rem;
+}
+
+/* Logo & Branding */
+.footer-logo {
+    margin-bottom: 1rem;
+}
+
+.govt-logo-placeholder {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #000091;
+}
+
+.govt-logo-placeholder strong {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Social Links */
+.footer-social-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: #000091;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 145, 0.05);
+}
+
+.social-icon:hover {
+    color: #ffffff;
+    background-color: var(--bs-health);
+    text-decoration: none !important;
+    transform: translateY(-2px);
+}
+
+/* Footer Headings */
+.footer-heading {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #000091;
+    margin-bottom: 1rem;
+    text-transform: none;
+}
+
+/* Footer Links */
+.footer-links {
+    margin-bottom: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: #3a3a3a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 0.875rem;
+}
+
+.footer-link:hover {
+    color: var(--bs-primary);
+    text-decoration: underline !important;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    background-color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .footer-main .col-md-4 {
+        text-align: center;
+    }
+    
+    .footer-social-links {
+        justify-content: center;
+    }
+    
+    .footer-logo {
+        text-align: center;
+    }
+}
+
+/* Accessibility */
+.footer-link:focus,
+.social-icon:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .site-footer {
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+    
+    .footer-social-links {
+        display: none;
+    }
+}

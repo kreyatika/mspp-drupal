@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override for Latest News List view row fields.
+ */
+#}
+
+{# Compact News Item #}
+<div class="col latest-news-item">
+    <div>
+        <img src="{{ fields.field_news_photo.content|striptags|trim }}" 
+             alt="{{ fields.title.content|striptags|trim }}" 
+             class="img-fluid" 
+             style="width: 100%; object-fit: cover;">
+    </div>
+    <div>
+        <h5 class="fw-bold mb-3 mt-4">
+            {{ fields.title.content }}
+        </h5>
+    </div>
+</div>

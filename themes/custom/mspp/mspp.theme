@@ -49,5 +49,15 @@ function mspp_preprocess_page(array &$variables) {
   if (empty($variables['title'])) {
     $variables['title'] = \Drupal::config('system.site')->get('name');
   }
+
+  // Ensure footer region always renders by adding a placeholder if empty
+  if (empty($variables['page']['footer'])) {
+    $variables['page']['footer'] = [
+      '#markup' => '',
+      '#cache' => [
+        'contexts' => ['url.path'],
+      ],
+    ];
+  }
 }
 

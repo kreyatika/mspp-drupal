@@ -8,18 +8,21 @@
 
 {{ drupal_block('hero_section', wrapper=false) }}
 
-    <div
-    class="container"> {# Header + CTA on the same row #}
+<div class="container"> {# Header + CTA on the same row #}
     <div class="row align-items-center mb-4">
-        <div class="col-md-6">
-            <h3 class="mb-0">Dernières actualités</h3>
+        <div class="col-lg-12">
+            <h2>Dernières actualités</h2>
         </div>
     </div>
 
     {# Content columns #}
     <div class="row g-4">
-        <div class="col-lg-8">
+        <div class="col-lg-5">
             {{ drupal_view('latest_news') }}
+        </div>
+
+        <div class="col-lg-3">
+            {{ drupal_view('latest_news_list') }}
         </div>
 
         <div class="col-lg-4">
@@ -29,62 +32,55 @@
 </div>
 
 <div class="container py-4">
-    <hr>
-</div>
+    <hr></div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <h3 class="mt-2 mb-4">
-                Le Ministre
-            </h3>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    {{ drupal_block('the_minister') }}
-</div>
-
-<div class="container py-4">
-    {# Section title #}
-    <div class="row mb-4">
-        <div class="col-lg-12">
-            <h3 class="mb-0">Nos services et outils</h3>
-        </div>
-    </div>
-</div>
-
-<div class="bg-primary">
-    <div class="container py-5">
-        <div class="row g-4">
-            {# Left content: services list + button #}
-            <div class="col-lg-8">
-                {{ drupal_view('services_featured_list') }}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="mt-2 mb-4">
+                    Le Ministre
+                </h2>
             </div>
-
-            {# Right content: featured block #}
-            <div class="col-lg-4">
-                {{ drupal_block('service_featured') }}
-            </div>
-
         </div>
     </div>
-</div>
 
-<div class="container mt-4">
-    <a href="" class="btn btn-outline-primary">
-        Tous nos services
-        <i class="fa fa-arrow-right"></i>
-    </a>
-</div>
+    <div class="container">
+        {{ drupal_block('the_minister') }}
+    </div>
 
-<div class="container py-3">
-    <hr>
-</div>
+    <div
+        class="container py-4">{# Section title #}
 
-<div class="container">
-    {{ drupal_view('video_news') }}
-</div>
+    </div>
 
-{{ page.footer }}
+    <div class="bg-primary p-lg-5 p-2 py-5">
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <h1 class="mb-0 text-lg-center p-2" style="color: #D5F2FF;">Nos services et outils</h1>
+                <p class="text-lg-center p-2 lead" style="color: #D5F2FF;">Découvrez nos différents services et outils dédiés à la santé publique</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div
+                class="row g-4">
+                {# Left content: services list + button #}
+                <div class="col-lg-12">
+                    {{ drupal_view('services_featured_list') }}
+                </div>
+
+                <div class="d-flex justify-content-end py-2">
+                    <a href="" class="text-white text-decoration-underline">
+                        Tous nos services et outils
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5 ">
+        {{ drupal_view('video_news') }}
+    </div>
+
+    {{ page.footer }}
+

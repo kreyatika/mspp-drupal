@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme override for Directions view exposed form.
+ */
+#}
+
+<div{{ attributes.addClass('directions-exposed-form') }}>
+  {% if q is not empty %}
+    {#
+      This ensures that, if clean URLs are off, the 'q' is added first,
+      as a hidden form element, so that it shows up first in the POST URL.
+    #}
+    {{ q }}
+  {% endif %}
+
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
+
+  {# Get current filter value #}
+  {% set current_tid = '' %}
+  {% if form.tid is defined and form.tid['#value'] is not empty %}
+    {% set current_tid = form.tid['#value'] %}
+  {% endif %}
+
+  {# Render taxonomy term filter as list #}
+  {% if form.tid is defined and form.tid['#options'] is defined %}
+    <ul class="directions-filter-list">
+      {% for key, label in form.tid['#options'] %}
+        {% set is_active = (key == current_tid) or (key == 'All' and current_tid is empty) %}
+        <li>
+          <a href="?tid={{ key == 'All' ? '' : key }}" 
+             class="{{ is_active ? 'is-active' : '' }}"
+             data-tid="{{ key }}">
+            {{ label }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {# Hide the original select and submit button #}
+  <div style="display: none;">
+    {{ form.tid }}
+    {{ form.actions }}
+  </div>
+
+  {# Render any other form elements #}
+  {% set handled_keys = ['form_build_id', 'form_token', 'form_id', 'tid', 'actions'] %}
+  {% for key, element in form %}
+    {% if key not in handled_keys and key|first != '#' %}
+      {{ element }}
+    {% endif %}
+  {% endfor %}
+</div>

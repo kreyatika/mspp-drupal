@@ -1,23 +1,11 @@
-{#
-/**
- * @file
- * Theme override for Latest News view.
- */
-#}
-
-<div class="latest-news">
+<div>
     {% if rows %}
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 gx-4">
-            {{ rows }}
+        <div
+            class="row">
+            {# LEFT SIDE: Featured article #}
+            {{ rows[0] }}
         </div>
     {% else %}
         {{ empty }}
     {% endif %}
-</div>
-
-<div class="text-md-start mt-4">
-    <a href="" class="btn btn-outline-primary full-width">
-        Toutes les actualités
-        <i class="fa fa-arrow-right"></i>
-    </a>
 </div>

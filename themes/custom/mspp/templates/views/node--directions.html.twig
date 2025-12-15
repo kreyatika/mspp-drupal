@@ -1,0 +1,140 @@
+{#
+/**
+ * @file
+ * Template for a single Direction node.
+ */
+#}
+
+<div
+    class="row">
+
+    {# =========================
+         LEFT SIDEBAR
+         ========================= #}
+    <div class="col-lg-3 border-right-column p-0">
+        <div class="card sticky-top border-0 mt-2">
+            <div class="card-body bg-light">
+                <ul class="nav flex-column list-unstyled">
+                    {% if content.field_direction_mission %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mission">{{ 'Mission'|t }}</a>
+                    </li>
+                    {% endif %}
+                    {% if content.field_direction_birth_place or content.field_direction_education or content.field_direction_career %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#biographie">{{ 'Biographie'|t }}</a>
+                    </li>
+                    {% endif %}
+                    {% if content.field_direction_leadership %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cadre-cles">{{ 'Cadres clés'|t }}</a>
+                    </li>
+                    {% endif %}
+                    {% if content.field_direction_email or content.field_direction_phone %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#coordonnees">{{ 'Coordonnées'|t }}</a>
+                    </li>
+                    {% endif %}
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    {# =========================
+         MAIN CONTENT
+         ========================= #}
+    <div
+        class="col-lg-8 px-lg-5 px-3">
+
+        {# ---------- Mission ---------- #}
+        {% if content.field_direction_mission %}
+            <div id="mission" class="direction-mission mb-4">
+                <h4>Mission et attributions</h4>
+                {{ content.field_direction_mission }}
+            </div>
+        {% endif %}
+
+        {# ---------- Directeur + titre ---------- #}
+        {% if content.field_direction_director_name %}
+            <h4>{{ content.field_direction_director_name }}</h4>
+        {% endif %}
+
+        <p class="lead">{{ label }}</p>
+        <hr>
+
+            {# ---------- Depuis ---------- #}
+            {% if content.field_direction_since %}
+                <p>
+                    Depuis
+                    {{ content.field_direction_since }}
+                </p>
+            {% endif %}
+
+            {# ---------- Photo ---------- #}
+            {% if content.field_direction_director_photo %}
+            <div class="col-lg-9">
+                <div class="direction-photo mb-4">
+                    <img src="{{ file_url(content.field_direction_director_photo['#items'].entity.uri.value) }}" class="img-fluid" alt="{{ content.field_direction_director_name[0]['#context'].value|default('Director photo') }}"/>
+                </div>
+                </div>
+            {% endif %}
+
+            {# =========================
+                   BIOGRAPHIE
+                   ========================= #}
+            {% if content.field_direction_birth_place or content.field_direction_education or content.field_direction_career %}
+            <h4 id="biographie">{{ 'Biographie'|t }}</h4>
+
+            {% if content.field_direction_birth_place %}
+                <p class="lead">{{ 'Né(e) à :'|t }}
+                    {{ content.field_direction_birth_place }}</p>
+            {% endif %}
+
+            {% if content.field_direction_education %}
+                <h6 class="text-decoration-underline">{{ 'Formation'|t }}</h6>
+                {{ content.field_direction_education }}
+            {% endif %}
+
+            {% if content.field_direction_career %}
+                <h6 class="text-decoration-underline">{{ 'Parcours'|t }}</h6>
+                {{ content.field_direction_career }}
+            {% endif %}
+            {% endif %}
+
+            {# ---------- Cadres clés ---------- #}
+            {% if content.field_direction_leadership %}
+                <div id="cadre-cles" class="direction-cadres mb-4">
+                    <h4>{{ 'Cadres clés'|t }}</h4>
+                    {{ content.field_direction_leadership }}
+                </div>
+            {% endif %}
+
+            {# =========================
+                   COORDONNÉES
+                   ========================= #}
+            {% if content.field_direction_email or content.field_direction_phone %}
+                <div id="coordonnees" class="direction-contact mb-4">
+                    <h4>{{ 'Coordonnées'|t }}</h4>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{ content.field_direction_email }}
+                                </td>
+                                <td>
+                                    {{ content.field_direction_phone }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>

@@ -5,7 +5,10 @@
  */
 #}
 
-<h3 class="mb-4">L'actualité en vidéos</h3>
+<div class="text-center mb-5">
+  <h2 class="fw-bold mb-3">L'actualité en vidéos</h2>
+  <p class="text-muted lead">Découvrez les dernières actualités du Ministère de la Santé Publique et de la Population en vidéo.</p>
+</div>
 
 {% if rows is not empty %}
 
@@ -29,26 +32,33 @@
   {% set max_items = 3 %}
   {% set items = total < max_items ? total : max_items %}
 
-  <div class="row">
+  <div class="row g-4">
     {% for i in 0..(items - 1) %}
       {% set html = view.style_plugin.getField(i, 'field_video_link')|striptags|trim %}
       {% set youtube = utils.youtube_id(html)|trim %}
 
-      <div class="col-lg-4 mb-4">
-        <div class="ratio ratio-16x9 mb-3">
-          <iframe
-            src="https://www.youtube.com/embed/{{ youtube }}"
-            title="{{ view.style_plugin.getField(i, 'title') }}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="ratio ratio-16x9">
+            <iframe
+              src="https://www.youtube.com/embed/{{ youtube }}"
+              title="{{ view.style_plugin.getField(i, 'title') }}"
+              class="card-img-top"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-semibold mb-3">{{ view.style_plugin.getField(i, 'title') }}</h5>
+            <p class="card-text text-muted small">{{ view.style_plugin.getField(i, 'field_video_desc') }}</p>
+          </div>
         </div>
-        <h5 class="mb-2">{{ view.style_plugin.getField(i, 'title') }}</h5>
-        <p class="text-muted">{{ view.style_plugin.getField(i, 'field_video_desc') }}</p>
       </div>
     {% endfor %}
   </div>
 
 {% else %}
-  {{ empty }}
+  <div class="alert alert-info text-center" role="alert">
+    {{ empty }}
+  </div>
 {% endif %}

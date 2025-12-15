@@ -1,0 +1,102 @@
+/**
+ * Directions View Styles
+ */
+
+/* Filter Sidebar */
+.directions-filters-sidebar {
+  background: transparent;
+}
+
+.directions-filters-sidebar .filter-header {
+  padding: 0 0 1rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1rem;
+}
+
+.directions-filters-sidebar .filter-title {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1f2937;
+}
+
+.directions-filters-sidebar .filter-title i {
+  display: none;
+}
+
+.directions-filters-sidebar .filter-body {
+  padding: 0;
+}
+
+/* Filter Form Styling */
+.directions-filters-sidebar .form-item {
+  margin-bottom: 0;
+}
+
+.directions-filters-sidebar label {
+  display: none;
+}
+
+.directions-filters-sidebar select,
+.directions-filters-sidebar .form-select {
+  display: none;
+}
+
+/* Filter Links Styling */
+.directions-filters-sidebar ul,
+.directions-filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.directions-filters-sidebar ul li,
+.directions-filter-list li {
+  margin-bottom: 0;
+}
+
+.directions-filters-sidebar ul li:last-child,
+.directions-filter-list li:last-child {
+  margin-bottom: 0;
+}
+
+.directions-filters-sidebar ul li a,
+.directions-filter-list li a {
+  display: block;
+  padding: 0.75rem 0;
+  padding-left: 1rem;
+  color: #1f2937;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.directions-filters-sidebar ul li a:hover,
+.directions-filter-list li a:hover {
+  color: #2563eb;
+}
+
+.directions-filters-sidebar ul li a.active,
+.directions-filters-sidebar ul li a.is-active,
+.directions-filter-list li a.active,
+.directions-filter-list li a.is-active {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+/* Submit Button */
+.directions-filters-sidebar .form-actions {
+  display: none;
+}
+
+/* Directions List */
+.directions-list {
+  /* Add spacing between direction items if needed */
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .directions-filters-sidebar {
+    margin-bottom: 2rem;
+  }
+}

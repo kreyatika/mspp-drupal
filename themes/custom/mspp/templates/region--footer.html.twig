@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Theme override to display the footer region - Simple version.
+ *
+ * Available variables:
+ * - content: The content for this region.
+ * - attributes: HTML attributes for the region <div>.
+ */
+#}
+<footer{{ attributes.addClass('site-footer','mt-5', 'py-3') }}>
+<hr>
+    <div class="footer-main py-4 ">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-3">
+                <div class="footer-logo">
+                    <img src="{{ base_path ~ directory }}/images/logo-dark.svg" alt="MSPP Logo" class="img-fluid" style="max-height: 60px;">
+                </div>
+                
+                <div class="footer-social-links d-flex gap-3">
+                    <a href="#" class="social-icon text-dark" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon text-dark" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-icon text-dark" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon text-dark" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-3 border-top pt-3 text-center text-md-start">
+                <p class="text-muted small mb-0">
+                    Plan du site | Accessibilité : partiellement conforme | Mentions légales | Données personnelles | Gestion des cookies
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

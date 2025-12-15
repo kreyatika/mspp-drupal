@@ -1,0 +1,92 @@
+{#
+/**
+ * @file
+ * Theme override for Press view row fields.
+ *
+ * Available fields:
+ * - fields.title: Press release title (linked to node)
+ * - fields.field_press_file: Attached PDF/document file
+ */
+#}
+<div class="press-item border-bottom border-secondary-subtle py-3">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      {# Title #}
+      <h6 class="mb-2 fw-normal">
+        {{ fields.title.content }}
+      </h6>
+    </div>
+    
+    {% if fields.field_press_file.content %}
+    <div class="col-md-4 text-md-end">
+      {# File download link #}
+      <div class="press-file">
+        {{ fields.field_press_file.content }}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+/* Press item container */
+.press-item {
+    border-color: #e8e5e5 !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    transition: background-color 0.2s ease;
+}
+
+.press-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Title styling */
+.press-item h6 {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem !important;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.press-item h6 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.press-item h6 a:hover {
+    color: #0d6efd;
+}
+
+/* File download styling */
+.press-file a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #0d6efd;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: background-color 0.2s ease;
+}
+
+.press-file a:hover {
+    background-color: #0b5ed7;
+}
+
+.press-file a::before {
+    content: "📄";
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .press-file {
+        margin-top: 0.75rem;
+    }
+}
+</style>
