@@ -22,7 +22,7 @@ class ResultApiClient {
    *
    * @var string
    */
-  protected $baseUrl = 'https://dfpss.kreyatika.com/api';
+  protected $baseUrl = 'http://178.128.75.110/api';
 
   /**
    * Constructs a ResultApiClient object.
