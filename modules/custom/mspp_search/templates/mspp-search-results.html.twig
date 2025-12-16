@@ -79,18 +79,16 @@
                         <div class="results-list">
                             {% for result in results %}
                                 <div class="border py-4 p-3">
-                                    <p class="text-muted small mb-2">{{ result.date }}</p>
                                     <h3 class="h5 fw-bold mb-2">
-                                        <a href="{{ result.url }}" class="text-primary text-decoration-none">
+                                        <a href="{{ result.url }}" class="text-dark text-decoration-none">
                                             {{ result.title }}
                                         </a>
                                     </h3>
                                     {% if result.excerpt %}
                                         <p class="text-muted mb-3">{{ result.excerpt }}</p>
                                     {% endif %}
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <small class="text-muted text-truncate" style="max-width: 80%;">{{ result.display_url }}</small>
-                                        <a href="{{ result.url }}" class="text-primary">
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <a href="{{ result.url }}">
                                             <i class="fa fa-arrow-right"></i>
                                         </a>
                                     </div>

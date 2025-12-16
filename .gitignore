@@ -1,15 +1,15 @@
 # -----------------------------
 # Sensitive configuration
 # -----------------------------
-/web/sites/*/settings*.php
-/web/sites/*/services*.yml
-/web/sites/*/settings.local.php
+/sites/*/settings*.php
+/sites/*/services*.yml
+/sites/*/settings.local.php
 
 # -----------------------------
 # User-generated content
 # -----------------------------
-/web/sites/*/files/
-/web/sites/*/private/
+/sites/*/files/
+/sites/*/private/
 
 # -----------------------------
 # Environment / tooling

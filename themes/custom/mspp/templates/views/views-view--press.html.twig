@@ -18,54 +18,62 @@
  */
 #}
 
-<div class="view-press">
-  {% if title %}
-    <div class="view-title mb-4">
-      {{ title_prefix }}
-      <h1>{{ title }}</h1>
-      {{ title_suffix }}
-    </div>
-  {% endif %}
+<div class="press-page">
+  <div class="container">
+    <div class="row g-5">
 
-  {% if header %}
-    <div class="view-header mb-4">
-      {{ header }}
-    </div>
-  {% endif %}
+      <div class="col-lg-3 mb-4 mb-lg-0 sticky-top border-right-column">
+        {% if exposed %}
+          <div class="press-filters">
+            {{ exposed }}
+          </div>
+        {% endif %}
+      </div>
 
-  {% if exposed %}
-    <div class="view-filters mb-4">
-      {{ exposed }}
-    </div>
-  {% endif %}
+      <div class="col-lg-9">
+        {% if title %}
+          <div class="view-title mb-4">
+            {{ title_prefix }}
+            <h1>{{ title }}</h1>
+            {{ title_suffix }}
+          </div>
+        {% endif %}
 
-  {% if rows %}
-    <div class="row">
-    <div class="col-lg-3">
-      {{ rows }}
-    </div>
-    </div>
-  {% elseif empty %}
-    <div class="view-empty alert alert-info">
-      {{ empty }}
-    </div>
-  {% endif %}
+        {% if header %}
+          <div class="view-header mb-4">
+            {{ header }}
+          </div>
+        {% endif %}
 
-  {% if pager %}
-    <div class="view-pager mt-4">
-      {{ pager }}
-    </div>
-  {% endif %}
+        {% if rows %}
+          <div class="row g-4">
+            {{ rows }}
+          </div>
+        {% elseif empty %}
+          <div class="alert alert-info">
+            {{ empty }}
+          </div>
+        {% endif %}
 
-  {% if footer %}
-    <div class="view-footer mt-4">
-      {{ footer }}
-    </div>
-  {% endif %}
+        {% if pager %}
+          <div class="mt-4">
+            {{ pager }}
+          </div>
+        {% endif %}
 
-  {% if feed_icons %}
-    <div class="view-feed-icons">
-      {{ feed_icons }}
+        {% if footer %}
+          <div class="view-footer mt-4">
+            {{ footer }}
+          </div>
+        {% endif %}
+
+        {% if feed_icons %}
+          <div class="view-feed-icons">
+            {{ feed_icons }}
+          </div>
+        {% endif %}
+      </div>
+
     </div>
-  {% endif %}
+  </div>
 </div>

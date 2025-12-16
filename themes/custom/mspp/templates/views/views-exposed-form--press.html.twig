@@ -1,0 +1,79 @@
+{#
+/**
+ * @file
+ * Theme override for Press view exposed form.
+ */
+#}
+
+<form{{ attributes }}>
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
+
+  {# Categories/Types Select #}
+  {% if form.field_press_category_target_id is defined %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Catégories</label>
+      {{ form.field_press_category_target_id|merge({'#attributes': {'class': ['form-control form-select']}}) }}
+    </div>
+  {% elseif form.tid is defined %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Catégories</label>
+      {{ form.tid|merge({'#attributes': {'class': ['form-control form-select']}}) }}
+    </div>
+  {% endif %}
+
+  {# Year Filter #}
+  {% if form.field_press_date_value is defined %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Année</label>
+      {{ form.field_press_date_value|merge({'#attributes': {'class': ['form-control form-select']}}) }}
+    </div>
+  {% elseif form.year is defined %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Année</label>
+      {{ form.year|merge({'#attributes': {'class': ['form-control form-select']}}) }}
+    </div>
+  {% endif %}
+
+  {# Search Input - check multiple possible field names #}
+  {% set search_field = null %}
+  {% if form.search_api_fulltext is defined %}
+    {% set search_field = form.search_api_fulltext %}
+  {% elseif form.title is defined %}
+    {% set search_field = form.title %}
+  {% elseif form.combine is defined %}
+    {% set search_field = form.combine %}
+  {% elseif form.keys is defined %}
+    {% set search_field = form.keys %}
+  {% endif %}
+
+  {% if search_field %}
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Rechercher par mots-clés</label>
+      <input type="text" name="{{ search_field['#name'] }}" class="form-control" placeholder="Rechercher..." value="{{ search_field['#value']|default('') }}">
+    </div>
+  {% endif %}
+
+  {# Render any other form elements not explicitly handled #}
+  {% set handled_keys = ['form_build_id', 'form_token', 'form_id', 'search_api_fulltext', 'title', 'combine', 'keys', 'field_press_category_target_id', 'field_press_date_value', 'tid', 'year', 'actions'] %}
+  {% for key, element in form %}
+    {% if key not in handled_keys and key|first != '#' %}
+      <div class="mb-4">
+        {{ element }}
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {# Action Buttons #}
+  <div class="d-grid gap-2 mt-3">
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-funnel-fill me-2"></i>
+      Filtrer
+    </button>
+    <a href="{{ path('<current>') }}" class="btn btn-outline-secondary btn-sm">
+      <i class="bi bi-arrow-counterclockwise me-2"></i>
+      Réinitialiser
+    </a>
+  </div>
+</form>

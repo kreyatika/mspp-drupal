@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Theme override for News view row fields.
+ *
+ * Available fields:
+ * - fields.title: News article title (linked to node)
+ * - fields.field_news_category: News category/type
+ * - fields.field_news_date: News publication date
+ * - fields.field_news_image: News featured image
+ * - fields.body: News body/summary
+ */
+#}
+<div class="col-lg-12">
+  <div class="card border-0 h-100 latest-news-item">
+    {% set image_url = '' %}
+    {% if fields.field_news_image is defined and fields.field_news_image.content %}
+      {% set image_url = fields.field_news_image.content|striptags|trim %}
+    {% elseif fields.field_image is defined and fields.field_image.content %}
+      {% set image_url = fields.field_image.content|striptags|trim %}
+    {% endif %}
+
+    {% if image_url %}
+      <div class="ratio ratio-16x9">
+        <img src="{{ image_url }}" alt="{{ fields.title.content|striptags|trim }}" class="object-fit-cover w-100 h-100">
+      </div>
+    {% endif %}
+
+    <div class="card-body p-0">
+      {% if fields.title is defined and fields.title.content %}
+        <h4 class="fw-bold mb-3 mt-4">
+          {{ fields.title.content }}
+        </h4>
+      {% endif %}
+
+      {% if fields.field_news_date is defined and (fields.field_news_date.raw is not empty or fields.field_news_date.content) %}
+        <div class="text-muted small mb-3">
+          {{ fields.field_news_date.raw is not empty ? (fields.field_news_date.raw|date('d/m/Y')) : fields.field_news_date.content }}
+        </div>
+      {% elseif fields.created is defined and (fields.created.raw is not empty or fields.created.content) %}
+        <div class="text-muted small mb-3">
+          {{ fields.created.raw is not empty ? (fields.created.raw|date('d/m/Y')) : fields.created.content }}
+        </div>
+      {% endif %}
+
+      {% if fields.body is defined and fields.body.content %}
+        <div class="card-text text-muted">
+          {{ fields.body.content }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

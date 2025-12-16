@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override for the footer logo block.
+ */
+#}
+<div{{ attributes.addClass('footer-logo-block') }}>
+  <a href="{{ path('<front>') }}" class="footer-logo-link" rel="home">
+    <img src="/{{ directory }}/images/logo-dark.svg" alt="{{ 'MSPP Logo'|t }}" class="img-fluid" style="max-height: 60px;">
+  </a>
+</div>

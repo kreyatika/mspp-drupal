@@ -1,0 +1,5 @@
+.node-page__image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

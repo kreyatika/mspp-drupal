@@ -29,6 +29,7 @@ class TheMinisterBlock extends BlockBase {
 
     $name = '';
     $photo_url = '';
+    $bio = '';
 
     // Get minister name.
     if ($block_content->hasField('field_block_minister_name') && !$block_content->get('field_block_minister_name')->isEmpty()) {
@@ -43,10 +44,15 @@ class TheMinisterBlock extends BlockBase {
       }
     }
 
+    if ($block_content->hasField('field_block_minister_bio') && !$block_content->get('field_block_minister_bio')->isEmpty()) {
+      $bio = $block_content->get('field_block_minister_bio')->value;
+    }
+
     return [
       '#theme' => 'the_minister_block',
       '#name' => $name,
       '#photo_url' => $photo_url,
+      '#bio' => $bio,
       '#attached' => [
         'library' => [
           'the_minister/the_minister',

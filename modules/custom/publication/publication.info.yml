@@ -1,7 +1,0 @@
-name: Publication
-type: module
-description: 'Provides publication functionality.'
-package: Custom
-core_version_requirement: ^9 || ^10
-dependencies:
-  - drupal:node
