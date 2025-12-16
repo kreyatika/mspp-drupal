@@ -8,8 +8,8 @@
 # -----------------------------
 # User-generated content
 # -----------------------------
-/sites/*/files/
-/sites/*/private/
+# /sites/*/files/
+# /sites/*/private/
 
 # -----------------------------
 # Environment / tooling

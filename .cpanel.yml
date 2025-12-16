@@ -1,0 +1,12 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/mspp_drupal/
+    - /bin/rsync -av --delete \
+      --exclude=".git" \
+      --exclude=".env" \
+      --exclude="sites/*/settings.php" \
+      --exclude="sites/*/settings.local.php" \
+      --exclude="sites/*/files/" \
+      --exclude="sites/*/private/" \
+      ./ $DEPLOYPATH
