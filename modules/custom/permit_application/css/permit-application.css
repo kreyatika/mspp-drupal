@@ -1,0 +1,78 @@
+.permit-application-page {
+    padding: 2rem 0;
+}
+
+.permit-application-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.permit-application-form fieldset legend {
+    display: none;
+}
+
+.permit-application-form .form-label {
+    font-weight: bold;
+}
+
+.permit-application-form .form-label .form-required {
+    color: #dc3545;
+}
+
+.permit-application-form .text-danger {
+    color: #dc3545 !important;
+}
+
+.permit-application-form .form-control,
+.permit-application-form .form-select {
+    border-radius: 0.25rem;
+}
+
+.permit-application-form .form-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.permit-application-form h5 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.permit-application-form h5:first-child {
+    margin-top: 0;
+}
+
+.card {
+    border-radius: 0.5rem;
+}
+
+.card-title i {
+    font-size: 1.1rem;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.rounded-3 {
+    border-radius: 0.5rem !important;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+@media (max-width: 991px) {
+    .permit-application-page .col-lg-4 {
+        margin-top: 2rem;
+    }
+}

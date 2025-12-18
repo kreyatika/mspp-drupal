@@ -1,0 +1,10 @@
+permit_application:
+  version: 1.x
+  css:
+    theme:
+      css/permit-application.css: {}
+  js:
+    js/permit-application.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

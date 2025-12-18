@@ -1,0 +1,7 @@
+permit_application.form:
+  path: '/services/demande-de-permis-dexercer'
+  defaults:
+    _controller: '\Drupal\permit_application\Controller\PermitApplicationController::content'
+    _title: 'Demande de Permis d''Exercer'
+  requirements:
+    _permission: 'access content'

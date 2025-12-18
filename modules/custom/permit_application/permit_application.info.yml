@@ -1,0 +1,5 @@
+name: 'Permit Application'
+type: module
+description: 'Module for handling permit application submissions with API integration'
+core_version_requirement: ^9 || ^10
+package: 'Custom'
