@@ -96,7 +96,7 @@
 
 @media (max-width: 768px) {
     .site-header {
-        padding: 1rem 1.5rem;
+        padding: 1rem 0.2rem;
     }
     
     .site-header img {
