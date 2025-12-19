@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Theme override for Partners view row.
+ *
+ * Available variables:
+ * - fields: An array of field output.
+ */
+#}
+
+<div class="row g-4 border-bottom pb-4">
+  {# Partner Image - Left Column #}
+  {% if fields.field_partners_logo.content %}
+    <div class="col-lg-5">
+      <div class="partner-image">
+        <img src="{{ fields.field_partners_logo.content|striptags|trim }}" class="img-fluid">
+      </div>
+    </div>
+  {% endif %}
+
+  {# Partner Content - Right Column #}
+  <div class="col-lg-7">
+    {# Partner Name #}
+    {% if fields.title.content %}
+      <h5>
+        {{ fields.title.content }}
+      </h5>
+    {% endif %}
+
+    {# Partner Description #}
+    {% if fields.body.content %}
+        {{ fields.body.content }}
+    {% endif %}
+  </div>
+</div>

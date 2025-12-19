@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Theme override for Partners view page.
+ *
+ * Available variables:
+ * - rows: The view's rows.
+ * - header: The view's header.
+ * - footer: The view's footer.
+ * - empty: The empty text to display if the view has no results.
+ * - pager: The pager.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Feed icons to display in the view header.
+ * - more: A link to view more, if any.
+ * - title: The title of this view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be displayed after the view title.
+ */
+#}
+
+<div class="partners-page">
+  <div class="container">
+    <div class="row g-5">
+
+      {# Partners Content #}
+      <div class="col-lg-12">
+        {% if title %}
+          <div class="view-title mb-4">
+            {{ title_prefix }}
+            <h1>{{ title }}</h1>
+            {{ title_suffix }}
+          </div>
+        {% endif %}
+
+        {% if header %}
+          <div class="view-header mb-4">
+            {{ header }}
+          </div>
+        {% endif %}
+
+        {% if rows %}
+          <div class="row row-cols-2 g-4">
+            {{ rows }}
+          </div>
+        {% elseif empty %}
+          <div class="alert alert-info">
+            {{ empty }}
+          </div>
+        {% endif %}
+
+        {% if pager %}
+          <div class="view-pager mt-4">
+            {{ pager }}
+          </div>
+        {% endif %}
+
+        {% if footer %}
+          <div class="view-footer mt-4">
+            {{ footer }}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% if feed_icons %}
+  <div class="view-feed-icons">
+    {{ feed_icons }}
+  </div>
+{% endif %}
