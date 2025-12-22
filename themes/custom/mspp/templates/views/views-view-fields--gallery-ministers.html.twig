@@ -14,9 +14,9 @@
   <div class="card minister-card h-100">
     <div class="card-body text-center">
       
-      {% if fields.field_minister_photo is defined and fields.field_minister_photo.content %}
+      {% if fields.field_gallery_photo is defined and fields.field_gallery_photo.content %}
         <div class="minister-photo mb-3">
-          <img src="{{ fields.field_minister_photo.content|striptags|trim }}" alt="{{ fields.title.content }}" class="img-fluid">
+          <img src="{{ fields.field_gallery_photo.content|striptags|trim }}" alt="{{ fields.title.content }}" class="img-fluid">
         </div>
       {% endif %}
 
