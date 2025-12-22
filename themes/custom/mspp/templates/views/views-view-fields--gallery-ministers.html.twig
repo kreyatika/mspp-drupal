@@ -15,8 +15,8 @@
     <div class="card-body text-center">
       
       {% if fields.field_gallery_photo is defined and fields.field_gallery_photo.content %}
-        <div class="minister-photo mb-3">
-          <img src="{{ fields.field_gallery_photo.content|striptags|trim }}" alt="{{ fields.title.content }}" class="img-fluid">
+        <div class="minister-photo mb-3" style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+          <img src="{{ fields.field_gallery_photo.content|striptags|trim }}" alt="{{ fields.title.content }}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
       {% endif %}
 
