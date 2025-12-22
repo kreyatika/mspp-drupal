@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme override for Gallery Ministers view row fields.
+ *
+ * Available fields:
+ * - fields.field_minister_photo: Minister photo
+ * - fields.title: Minister name
+ * - fields.field_entry_date: Entry date
+ * - fields.field_exit_date: Exit date
+ */
+#}
+
+  <div class="card minister-card h-100">
+    <div class="card-body text-center">
+      
+      {% if fields.field_minister_photo is defined and fields.field_minister_photo.content %}
+        <div class="minister-photo mb-3">
+          <img src="{{ fields.field_minister_photo.content|striptags|trim }}" alt="{{ fields.title.content }}" class="img-fluid">
+        </div>
+      {% endif %}
+
+      {% if fields.title is defined and fields.title.content %}
+        <h5 class="card-title minister-name">
+          {{ fields.title.content }}
+        </h5>
+      {% endif %}
+
+      <div class="minister-dates text-muted small">
+        {% if fields.field_entry_date is defined and fields.field_entry_date.content %}
+           {{ fields.field_entry_date.content }} - {{ fields.field_exit_date.content }}
+         
+        {% endif %}
+      </div>
+
+    </div>
+  </div>

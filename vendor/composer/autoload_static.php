@@ -101,6 +101,9 @@ class ComposerStaticInitacb35cb9188ed0c141d25c390a3f3472
         array (
             'League\\Container\\' => 17,
             'Laravel\\Prompts\\' => 16,
+            'Laminas\\Stdlib\\' => 15,
+            'Laminas\\Feed\\' => 13,
+            'Laminas\\Escaper\\' => 16,
         ),
         'G' => 
         array (
@@ -341,6 +344,18 @@ class ComposerStaticInitacb35cb9188ed0c141d25c390a3f3472
         'Laravel\\Prompts\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/prompts/src',
+        ),
+        'Laminas\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-stdlib/src',
+        ),
+        'Laminas\\Feed\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-feed/src',
+        ),
+        'Laminas\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laminas/laminas-escaper/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

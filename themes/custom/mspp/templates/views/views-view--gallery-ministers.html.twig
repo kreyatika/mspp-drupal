@@ -1,0 +1,77 @@
+{#
+/**
+ * @file
+ * Theme override for Gallery Ministers view page.
+ *
+ * Available variables:
+ * - rows: The view's rows.
+ * - header: The view's header.
+ * - footer: The view's footer.
+ * - empty: The empty text to display if the view has no results.
+ * - pager: The pager.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Feed icons to display in the view header.
+ * - more: A link to view more, if any.
+ * - title: The title of this view.
+ * - title_prefix: Additional output populated by modules, intended to be displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be displayed after the view title.
+ */
+#}
+
+<div class="gallery-ministers-page">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-12">
+        {% if title %}
+          <div class="view-title mb-4">
+            {{ title_prefix }}
+            <h1 class="text-center">{{ title }}</h1>
+            {{ title_suffix }}
+          </div>
+        {% endif %}
+
+        {% if header %}
+          <div class="view-header mb-4">
+            {{ header }}
+          </div>
+        {% endif %}
+
+        {% if exposed %}
+          <div class="view-filters mb-4">
+            {{ exposed }}
+          </div>
+        {% endif %}
+
+        {% if rows %}
+          <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-4 ministers-grid">
+            {{ rows }}
+          </div>
+        {% elseif empty %}
+          <div class="alert alert-info text-center">
+            {{ empty }}
+          </div>
+        {% endif %}
+
+        {% if pager %}
+          <div class="view-pager mt-5">
+            {{ pager }}
+          </div>
+        {% endif %}
+
+        {% if footer %}
+          <div class="view-footer mt-4">
+            {{ footer }}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% if feed_icons %}
+  <div class="view-feed-icons">
+    {{ feed_icons }}
+  </div>
+{% endif %}

@@ -25,6 +25,7 @@
         "drupal/core-recommended": "^10.2",
         "drupal/core-vendor-hardening": "^10.2",
         "drupal/devel": "^5.4",
+        "drupal/feeds": "^3.2",
         "drupal/field_tools": "^1.0@alpha",
         "drupal/hero_block": "^2.0",
         "drupal/jquery_ui_accordion": "^2.1",
