@@ -6,7 +6,7 @@
 #}
 <div class="border-bottom border-secondary-subtle py-3">
   {# Title #}
-  <a href="{{ fields.field_publication_file.content|striptags|trim }}" class="text-dark text-decoration-none">
+  <a href="{{ fields.field_publication_file.content|striptags|trim }}" class="text-dark text-decoration-none" target="_blank">
     <h6 class="mb-2 fw-normal">{{ fields.title.content }}</h6>
   </a>
   
@@ -18,7 +18,7 @@
 <style>
 /* Container spacing refinement */
 .alertes-sanitaires .border-bottom {
-    border-color: #e8e5e5 !important; /* lighter, less aggressive */
+    border-color: #e8e5e5 !important;
     padding-top: 0.85rem !important;
     padding-bottom: 0.85rem !important;
 }
