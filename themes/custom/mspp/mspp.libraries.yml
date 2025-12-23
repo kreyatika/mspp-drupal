@@ -63,3 +63,10 @@ views-directions:
       css/views-directions.css: {}
   dependencies:
     - mspp/global-styling
+
+contact-page:
+  css:
+    theme:
+      css/contact.css: {}
+  dependencies:
+    - mspp/global-styling

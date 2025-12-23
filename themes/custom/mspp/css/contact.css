@@ -1,0 +1,99 @@
+.contact-form .form-item {
+  margin-bottom: 1.25rem;
+}
+
+.contact-form label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  transition: border-color 0.3s;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form .form-actions {
+  margin-top: 1.5rem;
+}
+
+.contact-form button[type="submit"],
+.contact-form input[type="submit"] {
+  background: var(--bs-primary);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.875rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form button[type="submit"]:hover,
+.contact-form input[type="submit"]:hover {
+  background: var(--bs-primary);
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .rounded.overflow-hidden iframe {
+    height: 300px !important;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.merci-icon {
+  animation: scaleIn 0.5s ease-out;
+}
+
+.merci-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.merci-list li {
+  padding: 0.625rem 0 0.625rem 1.875rem;
+  position: relative;
+}
+
+.merci-list li::before {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: #28a745;
+}

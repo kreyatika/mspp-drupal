@@ -59,5 +59,11 @@ function mspp_preprocess_page(array &$variables) {
       ],
     ];
   }
+
+  // Attach contact page library for contact route
+  $current_route = $route_match->getRouteName();
+  if ($current_route === 'contact.site_page' || $current_route === 'entity.contact_form.canonical') {
+    $variables['#attached']['library'][] = 'mspp/contact-page';
+  }
 }
 

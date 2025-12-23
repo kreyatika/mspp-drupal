@@ -1,0 +1,93 @@
+{# siteheader #}
+{{ page.header }}
+{# siteheader #}
+
+{# menu #}
+{{ page.menu }}
+{# menu #}
+
+<div class="page-title-wrapper">
+  <div class="container">
+      {{ title_prefix }}
+      {% if title %}
+        <h1>{{ title }}</h1>
+      {% endif %}
+      {{ title_suffix }}
+  </div>
+</div>
+
+<main class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <h3 class="h4 fw-semibold mb-4">Nos coordonnées</h3>
+        <div class="bg-light rounded p-4 h-100">
+          <div class="d-flex gap-3 mb-4 pb-4 border-bottom">
+            <div class="flex-shrink-0 text-primary fs-5">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4 class="h6 fw-semibold mb-2">Notre adresse</h4>
+              <p class="text-muted small mb-0">1, Angle Avenue Maïs Gaté et,<br>
+              Rue Jacques Roumain, Port-au-Prince, Haïti, HT6123</p>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 mb-4 pb-4 border-bottom">
+            <div class="flex-shrink-0 text-primary fs-5">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h4 class="h6 fw-semibold mb-2">Téléphone</h4>
+              <p class="text-muted small mb-0">+509 4432-8401</p>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 mb-4 pb-4 border-bottom">
+            <div class="flex-shrink-0 text-primary fs-5">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4 class="h6 fw-semibold mb-2">Email</h4>
+              <p class="text-muted small mb-0">info@mspp.gouv.ht</p>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3">
+            <div class="flex-shrink-0 text-primary fs-5">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="h6 fw-semibold mb-2">Heures d'ouverture</h4>
+              <p class="text-muted small mb-0">Lundi - Vendredi: 8h00 - 4h00<br>
+              Samedi - Dimanche: Fermé</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="contact-form bg-white p-4">
+          {{ drupal_entity_form('contact_message', values={contact_form: 'contact_form'}) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="rounded overflow-hidden shadow-sm">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.3!2d-72.3074!3d18.5944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb9c6f3e3e3e3e3%3A0x3e3e3e3e3e3e3e3e!2sMinistere%20de%20la%20Sante%20Publique%20et%20de%20la%20Population!5e0!3m2!1sen!2sht!4v1234567890" 
+                  width="100%" 
+                  height="450" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{{ page.footer }}

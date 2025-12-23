@@ -1,0 +1,50 @@
+{# siteheader #}
+{{ page.header }}
+{# siteheader #}
+
+{# menu #}
+{{ page.menu }}
+{# menu #}
+
+<div class="page-title-wrapper">
+  <div class="container">
+      {{ title_prefix }}
+      {% if title %}
+        <h1>{{ title }}</h1>
+      {% endif %}
+      {{ title_suffix }}
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="merci-content">
+          <div class="merci-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h2 class="merci-title">Merci pour votre message !</h2>
+          <p class="merci-text">
+            Nous avons bien reçu votre message et nous vous remercions de nous avoir contactés. 
+            Notre équipe examinera votre demande et vous répondra dans les plus brefs délais.
+          </p>
+          <div class="merci-info">
+            <p><strong>Que se passe-t-il ensuite ?</strong></p>
+            <ul class="merci-list">
+              <li>Notre équipe examinera votre message</li>
+              <li>Vous recevrez une réponse par e-mail sous 24-48 heures</li>
+              <li>Pour les demandes urgentes, n'hésitez pas à nous appeler au +509 4432-8401</li>
+            </ul>
+          </div>
+          <div class="merci-actions">
+            <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+            <a href="/contact" class="btn btn-outline-primary">Envoyer un autre message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{{ page.footer }}
