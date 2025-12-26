@@ -3,3 +3,8 @@ medications:
   css:
     theme:
       css/medications.css: {}
+  js:
+    js/medication-search.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

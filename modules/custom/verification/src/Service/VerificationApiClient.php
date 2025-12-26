@@ -22,7 +22,7 @@ class VerificationApiClient {
    *
    * @var string
    */
-  protected $baseUrl = 'https://dfpss.kreyatika.com/api';
+  protected $baseUrl = 'https://dfpss.mspp.gouv.ht/api';
 
   /**
    * Constructs a VerificationApiClient object.

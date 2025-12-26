@@ -116,28 +116,37 @@ class MedicationController extends ControllerBase {
    */
   public function publicList() {
     try {
-      // Create the base query
+      $limit = 20;
+      $offset = 0;
+
       $query = $this->database->select('authorized_medication', 'am')
         ->fields('am')
-        ->orderBy('name', 'ASC');
-
-      // Add the pager
-      $query = $query->extend('Drupal\Core\Database\Query\PagerSelectExtender')
-        ->limit(20); // 20 items per page
+        ->orderBy('name', 'ASC')
+        ->range($offset, $limit);
 
       $medications = $query->execute()->fetchAll();
+
+      $total_query = $this->database->select('authorized_medication', 'am')
+        ->countQuery();
+      $total = $total_query->execute()->fetchField();
 
       return [
         '#theme' => 'medications_public_list',
         '#medications' => $medications,
+        '#total' => $total,
+        '#limit' => $limit,
         '#attached' => [
           'library' => [
             'authorized_medication/medications',
-            'core/drupal.pager',
           ],
-        ],
-        'pager' => [
-          '#type' => 'pager',
+          'drupalSettings' => [
+            'authorized_medication' => [
+              'total' => $total,
+              'loaded' => count($medications),
+              'limit' => $limit,
+              'loadMoreUrl' => Url::fromRoute('authorized_medication.load_more')->toString(),
+            ],
+          ],
         ],
       ];
     }
@@ -145,6 +154,45 @@ class MedicationController extends ControllerBase {
       return [
         '#markup' => $this->t('Impossible de charger la liste des médicaments.'),
       ];
+    }
+  }
+
+  /**
+   * AJAX callback to load more medications.
+   */
+  public function loadMore() {
+    $offset = \Drupal::request()->query->get('offset', 0);
+    $limit = \Drupal::request()->query->get('limit', 20);
+
+    try {
+      $query = $this->database->select('authorized_medication', 'am')
+        ->fields('am')
+        ->orderBy('name', 'ASC')
+        ->range($offset, $limit);
+
+      $medications = $query->execute()->fetchAll();
+
+      $rows = [];
+      foreach ($medications as $medication) {
+        $rows[] = [
+          'name' => $medication->name,
+          'shape' => $medication->shape,
+          'form' => $medication->form,
+          'dosage' => $medication->dosage,
+        ];
+      }
+
+      return new \Symfony\Component\HttpFoundation\JsonResponse([
+        'success' => TRUE,
+        'medications' => $rows,
+        'loaded' => count($rows),
+      ]);
+    }
+    catch (\Exception $e) {
+      return new \Symfony\Component\HttpFoundation\JsonResponse([
+        'success' => FALSE,
+        'message' => $this->t('Erreur lors du chargement des médicaments.'),
+      ], 500);
     }
   }
 

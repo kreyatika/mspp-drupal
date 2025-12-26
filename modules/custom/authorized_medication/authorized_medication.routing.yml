@@ -29,3 +29,12 @@ authorized_medication.import:
     _title: 'Importer des médicaments'
   requirements:
     _permission: 'access content'
+
+authorized_medication.load_more:
+  path: '/medicaments-autorises/load-more'
+  defaults:
+    _controller: '\Drupal\authorized_medication\Controller\MedicationController::loadMore'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: TRUE
