@@ -22,7 +22,7 @@ class ResultApiClient {
    *
    * @var string
    */
-  protected $baseUrl = 'http://178.128.75.110/api';
+  protected $baseUrl = 'https://dfpss.mspp.gouv.ht/api';
 
   /**
    * Constructs a ResultApiClient object.
