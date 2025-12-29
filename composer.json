@@ -45,7 +45,8 @@
         "drupal/video_embed_field": "^3.0@beta",
         "drupal/views_accordion": "^2.0",
         "drupal/views_organization_chart": "^1.0",
-        "drush/drush": "^13.6"
+        "drush/drush": "^13.6",
+        "laminas/laminas-feed": "^2.26"
     },
     "conflict": {
         "drupal/drupal": "*"
