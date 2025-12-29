@@ -27,6 +27,7 @@
         "drupal/devel": "^5.4",
         "drupal/feeds": "^3.2",
         "drupal/field_tools": "^1.0@alpha",
+        "drupal/google_analytics": "^4.0",
         "drupal/hero_block": "^2.0",
         "drupal/honeypot": "^2.2",
         "drupal/jquery_ui_accordion": "^2.1",
