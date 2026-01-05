@@ -1,0 +1,23 @@
+.pager__items {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  gap: .5rem;
+}
+
+.pager__item {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+.pager__item.is-active {
+  background: var(--bs-primary);
+  color: #fff;
+  font-weight: bold;
+}
+
+.pager__item a {
+  text-decoration: none;
+  color: inherit;
+}

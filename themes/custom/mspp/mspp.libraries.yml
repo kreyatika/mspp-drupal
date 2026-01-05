@@ -20,7 +20,8 @@ global-styling:
       css/header.css: {}
       css/homepage.css: {}
       css/footer.css: {}
-      css/variables.css: {}                                                                                                    
+      css/variables.css: {}
+      css/pager.css: {}                                                                                                    
   js:
     js/script.js: {}
   dependencies:
