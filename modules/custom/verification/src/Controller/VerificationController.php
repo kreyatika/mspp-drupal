@@ -69,7 +69,7 @@ class VerificationController extends ControllerBase {
           if (isset($data['data'])) {
             $permit_data = $data['data'];
           } else {
-            $error_message = $this->t('Aucun permis trouvé avec ce numéro.');
+            $error_message = $this->t('Cet individu n\'est pas régulièrement enregistré dans notre base de données comme professionnel de la santé.');
           }
         }
         catch (\Exception $e) {
