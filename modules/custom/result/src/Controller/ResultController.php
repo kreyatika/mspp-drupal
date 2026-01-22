@@ -61,31 +61,40 @@ class ResultController extends ControllerBase {
   public function content($order_number = null) {
     $result = null;
     $error_message = null;
+    $sessions = [];
+    $categories = [];
 
-    // Handle direct access via URL parameter
-    if ($order_number) {
-      try {
-        $data = $this->resultApiClient->getExamResult($order_number);
-        if (isset($data['data'])) {
-          $result = $data['data'];
-        } else {
-          $error_message = $this->t('Aucun résultat trouvé pour ce numéro d\'ordre.');
-        }
-      }
-      catch (\Exception $e) {
-        $error_message = $this->t('Une erreur est survenue lors de la connexion au serveur.');
+    // Fetch sessions and categories from API
+    try {
+      $sessions_data = $this->resultApiClient->getExamSessions();
+      if (isset($sessions_data['data'])) {
+        $sessions = $sessions_data['data'];
       }
     }
+    catch (\Exception $e) {
+      \Drupal::logger('result')->error('Failed to fetch sessions: @message', ['@message' => $e->getMessage()]);
+    }
+
+    try {
+      $categories_data = $this->resultApiClient->getCategories();
+      if (isset($categories_data['data'])) {
+        $categories = $categories_data['data'];
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('result')->error('Failed to fetch categories: @message', ['@message' => $e->getMessage()]);
+    }
+
     // Handle form submission
-    elseif ($this->requestStack->getCurrentRequest()->isMethod('POST')) {
+    if ($this->requestStack->getCurrentRequest()->isMethod('POST')) {
       $request = $this->requestStack->getCurrentRequest();
       $order_number = $request->request->get('numero_ordre');
-      $category = $request->request->get('category');
-      $session = $request->request->get('session');
+      $category_id = $request->request->get('category');
+      $session_id = $request->request->get('session');
       
-      if (!empty($order_number)) {
+      if (!empty($order_number) && !empty($category_id) && !empty($session_id)) {
         try {
-          $data = $this->resultApiClient->getExamResult($order_number);
+          $data = $this->resultApiClient->getExamResult($order_number, $session_id, $category_id);
           if (isset($data['data'])) {
             $result = $data['data'];
           } else {
@@ -95,6 +104,8 @@ class ResultController extends ControllerBase {
         catch (\Exception $e) {
           $error_message = $this->t('Une erreur est survenue lors de la connexion au serveur.');
         }
+      } else {
+        $error_message = $this->t('Veuillez remplir tous les champs requis.');
       }
     }
 
@@ -104,7 +115,9 @@ class ResultController extends ControllerBase {
       '#template' => file_get_contents($module_path . '/templates/result-exam.html.twig'),
       '#context' => [
         'result' => $result,
-        'error_message' => $error_message
+        'error_message' => $error_message,
+        'sessions' => $sessions,
+        'categories' => $categories,
       ],
       '#cache' => [
         'max-age' => 0,

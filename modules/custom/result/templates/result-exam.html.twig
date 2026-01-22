@@ -3,8 +3,8 @@
         <div class="col-lg-10">
             <div class="mb-5">
                 <p>
-                    Consultez facilement vos résultats en ligne.
-                    Entrez simplement votre numéro d'ordre et la catégorie correspondante.
+                    Consultez en ligne les résultats officiels des examens du Ministère de la Santé Publique et de la Population (MSPP).
+Renseignez votre numéro d’ordre, votre catégorie et la session correspondante.
                 </p>
                
             </div>
@@ -25,13 +25,11 @@
                                             </span>
                                             <select class="form-select" id="category" name="category" required>
                                                 <option value="">{{ 'Choisir une catégorie'|t }}</option>
-                                                <option value="infirmier">{{ 'Sciences Infirmières'|t }}</option>
-                                                <option value="sage-femme">{{ 'Sage-Femme'|t }}</option>
-                                                <option value="auxiliaire">{{ 'Auxiliaire'|t }}</option>
-                                                <option value="biologie-medicale">{{ 'Biologie Medicale'|t }}</option>
-                                                <option value="medecine">{{ 'Médecine'|t }}</option>
-                                                <option value="odontologie">{{ 'Odontologie'|t }}</option>
-                                                <option value="pharmacie">{{ 'Pharmacie'|t }}</option>
+                                                {% if categories %}
+                                                    {% for category in categories %}
+                                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                                    {% endfor %}
+                                                {% endif %}
                                             </select>
                                         </div>
                                     </div>
@@ -45,9 +43,11 @@
                                             </span>
                                             <select class="form-select" id="session" name="session" required>
                                                 <option value="">{{ 'Choisir une session'|t }}</option>
-                                                <option value="2024-11">{{ 'Novembre 2024'|t }}</option>
-                                                <option value="2024-07">{{ 'Juillet 2024'|t }}</option>
-                                                <option value="2023-11">{{ 'Novembre 2023'|t }}</option>
+                                                {% if sessions %}
+                                                    {% for session in sessions %}
+                                                        <option value="{{ session.id }}">{{ session.date }}</option>
+                                                    {% endfor %}
+                                                {% endif %}
                                             </select>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                                    placeholder="Ex: OAP001" 
                                                    required>
                                         </div>
-                                        <small class="form-text text-muted">{{ 'Le numéro se trouve sur votre carte de candidat'|t }}</small>
+                                        <small class="form-text text-muted">{{ 'Le numéro d’ordre figure sur votre carte de candidat.'|t }}</small>
                                     </div>
 
                                     <div class="d-grid gap-2">
@@ -84,40 +84,40 @@
                                             <table class="table table-bordered">
                                                 <tbody>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'Nom'|t }}</th>
+                                                        <th class="bg-light">Nom de famille</th>
                                                         <td>{{ result.last_name }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'Prénom'|t }}</th>
+                                                        <th class="bg-light">Prénom</th>
                                                         <td>{{ result.first_name }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'Date de naissance'|t }}</th>
+                                                        <th class="bg-light">Date de naissance</th>
                                                         <td>{{ result.birth_date|date('d/m/Y') }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'NINU'|t }}</th>
+                                                        <th class="bg-light">NINU</th>
                                                         <td>{{ result.ninu }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'Numéro d\'ordre'|t }}</th>
+                                                        <th class="bg-light">Numéro d'ordre</th>
                                                         <td>{{ result.order_number }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'École'|t }}</th>
-                                                        <td>{{ result.school_name }}</td>
+                                                        <th class="bg-light">Établissement de formation</th>
+                                                        <td>{{ result.school }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'Année d\'examen'|t }}</th>
-                                                        <td>{{ result.exam_year }}</td>
+                                                        <th class="bg-light">Session d’examen</th>
+                                                        <td>{{ result.session.date }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="bg-light">{{ 'Statut'|t }}</th>
+                                                        <th class="bg-light">Résultat</th>
                                                         <td>
-                                                            {% if result.passed %}
-                                                                <span class="badge bg-success text-uppercase">{{ 'Admis(e)'|t }}</span>
-                                                            {% else %}
-                                                                <span class="badge bg-danger text-uppercase">{{ 'Échoué(e)'|t }}</span>
+                                                            {% if result.passed == 'REUSSITE' %}
+                                                                <span class="badge bg-success text-uppercase">REUSSITE</span>
+                                                            {% elseif result.passed == 'ECHEC' %}
+                                                                <span class="badge bg-danger text-uppercase">ECHEC</span>
                                                             {% endif %}
                                                         </td>
                                                     </tr>
@@ -154,7 +154,7 @@
                             <h5 class="card-title fw-bold mb-3">
                                 <i class="fas fa-info-circle text-primary me-2"></i>{{ 'Important'|t }}
                             </h5>
-                            <p class="card-text">{{ 'Cette plateforme est réservée aux candidates et candidats de l\'examen d\'État en sciences infirmières de la session de Juillet 2025.'|t }}</p>
+                            <p class="card-text">{{ 'Cette plateforme est destinée exclusivement aux candidates et candidats inscrits aux examens officiels du Ministère de la Santé Publique et de la Population (MSPP).'|t }}</p>
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                                 </li>
                                 <li>
                                     <i class="fas fa-clock text-muted me-2"></i>
-                                    {{ 'Lun-Ven, 8h00-16h00'|t }}
+                                    {{ 'Lun-Ven, 8h AM - 4h PM'|t }}
                                 </li>
                             </ul>
                         </div>
