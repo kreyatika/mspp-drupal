@@ -1,0 +1,226 @@
+/* ── Filter box ─────────────────────────────────────────── */
+.publications-filter-box {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.publications-search-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 10px;
+}
+
+.publications-search-icon { color: #aaa; flex-shrink: 0; }
+
+.publications-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  background: transparent;
+  color: #333;
+}
+.publications-search-input::placeholder { color: #aaa; }
+
+.publications-search-btn {
+  background: #1a3a5c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.publications-search-btn:hover { background: #14304e; }
+
+.publications-filter-divider { height: 1px; background: #e0e0e0; }
+
+.publications-dropdowns-row {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  flex-wrap: wrap;
+}
+
+.publications-dropdown-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  flex: 1;
+  min-width: 130px;
+}
+.publications-dropdown-item label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2px;
+}
+.publications-dropdown-item select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.875rem;
+  color: #555;
+  cursor: pointer;
+  padding: 0;
+}
+
+.publications-dropdown-sep {
+  width: 1px;
+  height: 36px;
+  background: #e0e0e0;
+  flex-shrink: 0;
+}
+
+.publications-reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  color: #1a3a5c;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.publications-reset-btn:hover { color: #0f2540; }
+
+/* ── PDF canvas preview ─────────────────────────────────── */
+.pub-pdf-canvas {
+  display: none;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.pub-pdf-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 140px;
+  color: #aaa;
+  font-size: 1.2rem;
+}
+
+/* ── Publication card ────────────────────────────────────── */
+.pub-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease;
+}
+.pub-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+/* Preview area */
+.pub-card-preview {
+  position: relative;
+  background: #f2f4f7;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.pub-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #1a3a5c;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+/* Document thumbnail simulation */
+.pub-doc-thumbnail {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 90px;
+  height: 116px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+}
+
+.pub-doc-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.pub-doc-lines span {
+  display: block;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+}
+.pub-doc-lines span.short { width: 60%; }
+
+/* Card body */
+.pub-card-body {
+  padding: 14px 14px 6px;
+  flex: 1;
+}
+
+.pub-card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pub-card-date {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0;
+}
+
+/* Card footer */
+.pub-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.pub-card-meta {
+  font-size: 0.75rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.pub-card-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #1a3a5c;
+  border-radius: 6px;
+  color: #1a3a5c;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.pub-card-download:hover {
+  background: #1a3a5c;
+  color: #fff;
+}

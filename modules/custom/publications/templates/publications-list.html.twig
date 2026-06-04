@@ -1,0 +1,139 @@
+{#
+/**
+ * @file
+ * Template for the publications listing page.
+ */
+#}
+
+<div class="container">
+  <form method="get" action="{{ path('publications.list') }}">
+
+    <div class="publications-filter-box mb-4">
+
+      <div class="publications-search-row">
+        <span class="publications-search-icon"><i class="fas fa-search"></i></span>
+        <input type="text" name="search" class="publications-search-input"
+               placeholder="{{ 'Rechercher une publication, un mot-clé, un auteur...'|t }}"
+               value="{{ filters.search }}">
+        <button type="submit" class="publications-search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <div class="publications-filter-divider"></div>
+
+      <div class="publications-dropdowns-row">
+
+        <div class="publications-dropdown-item">
+          <label>{{ 'Catégorie'|t }}</label>
+          <select name="category">
+            <option value="">{{ 'Toutes'|t }}</option>
+            {% for cat in categories %}
+              <option value="{{ cat.id }}" {% if filters.category == cat.id %}selected{% endif %}>
+                {{ cat.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="publications-dropdown-sep"></div>
+
+        <div class="publications-dropdown-item">
+          <label>{{ 'Direction'|t }}</label>
+          <select name="direction">
+            <option value="">{{ 'Toutes'|t }}</option>
+            {% for dir in directions %}
+              <option value="{{ dir.id }}" {% if filters.direction == dir.id %}selected{% endif %}>
+                {{ dir.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="publications-dropdown-sep"></div>
+
+        <div class="publications-dropdown-item">
+          <label>{{ 'Année'|t }}</label>
+          <select name="year">
+            <option value="">{{ 'Toutes'|t }}</option>
+            {% for year in years %}
+              <option value="{{ year }}" {% if filters.year == year %}selected{% endif %}>
+                {{ year }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        {% if filters.search or filters.category or filters.direction or filters.year %}
+          <div class="publications-dropdown-sep"></div>
+          <a href="{{ path('publications.list') }}" class="publications-reset-btn">
+            <i class="fas fa-redo-alt"></i> {{ 'Réinitialiser'|t }}
+          </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <p class="text-muted mb-3"><small>{{ total }} {{ 'publication(s) trouvée(s)'|t }}</small></p>
+
+    {% if publications is not empty %}
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        {% for pub in publications %}
+          <div class="col">
+            <div class="pub-card h-100">
+
+              {# Preview area #}
+              <div class="pub-card-preview">
+                {% if pub.category_label %}
+                  <span class="pub-card-badge">{{ pub.category_label }}</span>
+                {% endif %}
+                {% if pub.Nom_Document %}
+                  <canvas class="pub-pdf-canvas"
+                          data-pdf="/sites/default/files/publications/{{ pub.Nom_Document|url_encode }}"></canvas>
+                  <div class="pub-pdf-loader"><i class="fas fa-spinner fa-spin"></i></div>
+                {% else %}
+                  <div class="pub-doc-thumbnail">
+                    <div class="pub-doc-lines">
+                      <span></span><span></span><span></span>
+                      <span class="short"></span><span></span><span class="short"></span>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+
+              {# Content #}
+              <div class="pub-card-body">
+                <p class="pub-card-title">{{ pub.Titre_pub }}</p>
+                {% if pub.Date_publication %}
+                  <p class="pub-card-date">{{ pub.date_formatted }}</p>
+                {% endif %}
+              </div>
+
+              {# Footer #}
+              <div class="pub-card-footer">
+                <span class="pub-card-meta">
+                  {% if pub.Nom_Document %}PDF{% endif %}
+                </span>
+                {% if pub.Nom_Document %}
+                  <a href="/sites/default/files/publications/{{ pub.Nom_Document }}"
+                     target="_blank" class="pub-card-download" title="{{ 'Télécharger'|t }}">
+                    <i class="fas fa-download"></i>
+                  </a>
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="mt-4">
+        {{ pager }}
+      </div>
+
+    {% else %}
+      <div class="alert alert-info">{{ 'Aucune publication disponible.'|t }}</div>
+    {% endif %}
+
+  </form>
+</div>

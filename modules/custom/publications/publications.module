@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Publications module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function publications_theme() {
+  return [
+    'publications_list' => [
+      'template' => 'publications-list',
+      'variables' => [
+        'publications' => [],
+        'categories'   => [],
+        'directions'   => [],
+        'years'        => [],
+        'filters'      => [],
+        'total'        => 0,
+        'pager'        => NULL,
+      ],
+    ],
+  ];
+}

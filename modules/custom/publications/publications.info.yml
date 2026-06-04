@@ -1,0 +1,6 @@
+name: Publications
+type: module
+description: 'Displays MSPP publications from external API.'
+package: Custom
+core_version_requirement: ^9 || ^10
+version: 1.0.0

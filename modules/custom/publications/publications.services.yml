@@ -1,0 +1,4 @@
+services:
+  publications.api:
+    class: Drupal\publications\Service\PublicationsApiService
+    arguments: ['@database']
