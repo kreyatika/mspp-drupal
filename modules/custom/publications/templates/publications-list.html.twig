@@ -91,7 +91,7 @@
                   <canvas class="pub-pdf-canvas"
                           data-pdf="{{ base_path }}sites/default/files/publications/{{ pub.Nom_Document|url_encode }}"></canvas>
                   <div class="pub-pdf-loader">
-                    <i class="fas fa-file-pdf pub-pdf-fallback"></i>
+                    <i class="fas fa-spinner fa-spin pub-pdf-spinner"></i>
                   </div>
                 {% else %}
                   <div class="pub-doc-thumbnail">

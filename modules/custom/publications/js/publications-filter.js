@@ -39,6 +39,8 @@
           if (!entry.isIntersecting) return;
           observer.unobserve(entry.target);
           var canvas = entry.target.querySelector('.pub-pdf-canvas');
+          var loader = entry.target.querySelector('.pub-pdf-loader');
+          if (loader) loader.classList.add('is-loading');
           if (canvas) renderPdf(canvas);
         });
       }, { rootMargin: '150px' });

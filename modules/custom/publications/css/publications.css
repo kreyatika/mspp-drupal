@@ -99,9 +99,20 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 140px;
+  height: 160px;
   color: #ccc;
   font-size: 1.2rem;
+}
+
+.pub-pdf-spinner {
+  font-size: 1.6rem;
+  color: #c0c8d4;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.pub-pdf-loader.is-loading .pub-pdf-spinner {
+  opacity: 1;
 }
 
 .pub-pdf-fallback {
