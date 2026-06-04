@@ -92,7 +92,6 @@
   display: none;
   width: 100%;
   height: auto;
-  border-radius: 2px;
 }
 
 .pub-pdf-loader {
@@ -101,8 +100,13 @@
   justify-content: center;
   width: 100%;
   min-height: 140px;
-  color: #aaa;
+  color: #ccc;
   font-size: 1.2rem;
+}
+
+.pub-pdf-fallback {
+  font-size: 3rem;
+  color: #d0d5dd;
 }
 
 /* ── Publication card ────────────────────────────────────── */
@@ -121,11 +125,12 @@
 .pub-card-preview {
   position: relative;
   background: #f2f4f7;
-  padding: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  min-height: 160px;
+  height: 160px;
+  overflow: hidden;
+  padding: 0;
 }
 
 .pub-card-badge {

@@ -89,8 +89,10 @@
                 {% endif %}
                 {% if pub.Nom_Document %}
                   <canvas class="pub-pdf-canvas"
-                          data-pdf="/sites/default/files/publications/{{ pub.Nom_Document|url_encode }}"></canvas>
-                  <div class="pub-pdf-loader"><i class="fas fa-spinner fa-spin"></i></div>
+                          data-pdf="{{ base_path }}sites/default/files/publications/{{ pub.Nom_Document|url_encode }}"></canvas>
+                  <div class="pub-pdf-loader">
+                    <i class="fas fa-file-pdf pub-pdf-fallback"></i>
+                  </div>
                 {% else %}
                   <div class="pub-doc-thumbnail">
                     <div class="pub-doc-lines">
@@ -115,7 +117,7 @@
                   {% if pub.Nom_Document %}PDF{% endif %}
                 </span>
                 {% if pub.Nom_Document %}
-                  <a href="/sites/default/files/publications/{{ pub.Nom_Document }}"
+                  <a href="{{ base_path }}sites/default/files/publications/{{ pub.Nom_Document }}"
                      target="_blank" class="pub-card-download" title="{{ 'Télécharger'|t }}">
                     <i class="fas fa-download"></i>
                   </a>

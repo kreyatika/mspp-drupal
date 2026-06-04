@@ -4,9 +4,7 @@ publications-filter:
     theme:
       css/publications.css: {}
   js:
-    https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js:
-      type: external
-      minified: true
+    js/pdf.min.js: { minified: true }
     js/publications-filter.js: {}
   dependencies:
     - core/drupal
